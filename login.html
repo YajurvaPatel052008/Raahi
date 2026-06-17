@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In — Raahi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-left">
+      <div class="auth-card">
+        <a href="index.html" class="auth-brand">
+          RAAHI <span class="brand-dot"></span>
+        </a>
+
+        <div class="auth-header">
+          <h1>Welcome back</h1>
+          <p>Please enter your details to log in.</p>
+        </div>
+
+        <form class="auth-form" id="loginForm" onsubmit="event.preventDefault(); simulateAuth('dashboard.html');">
+          <div class="input-group">
+            <label for="email" class="input-label">College Email <span class="required">*</span></label>
+            <input type="email" id="email" class="input" placeholder="student@college.edu.in" required>
+            <span class="input-error-msg" style="display: none;"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="password" class="input-label">Password <span class="required">*</span></label>
+            <div class="input-with-icon">
+              <input type="password" id="password" class="input" placeholder="••••••••" required>
+              <span class="input-icon-right toggle-password" onclick="togglePasswordVisibility('password')">👁️</span>
+            </div>
+            <span class="input-error-msg" style="display: none;"></span>
+          </div>
+
+          <div class="auth-form-options">
+            <label class="checkbox-group">
+              <input type="checkbox" id="remember">
+              <span>Remember me</span>
+            </label>
+            <a href="forgot-password.html" class="auth-forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg mt-2" id="submitBtn">Log In</button>
+
+          <div class="divider">or</div>
+
+          <div class="auth-social">
+            <button type="button" class="auth-social-btn">
+              <span class="social-icon">G</span>
+              Log in with Google
+            </button>
+            <button type="button" class="auth-social-btn">
+              <span class="social-icon">🎓</span>
+              Log in with College Portal
+            </button>
+          </div>
+        </form>
+
+        <div class="auth-footer">
+          Don't have an account? <a href="register.html">Sign up</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-right">
+      <div class="auth-right-content">
+        <div class="auth-right-illustration">🌍</div>
+        <h2>Your next adventure awaits</h2>
+        <p>Connect with verified students from your college and explore the world together.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

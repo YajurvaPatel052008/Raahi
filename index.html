@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Raahi — Find verified college students who share your destination, budget and travel style. Travel Together. Trust First.">
+  <meta name="keywords" content="travel partner, college students, travel companion, verified travelers, trip planning">
+  <title>Raahi — Travel Together. Trust First.</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        RAAHI <span class="brand-dot"></span>
+      </a>
+
+      <div class="navbar-links">
+        <a href="#features" class="navbar-link">Features</a>
+        <a href="#how-it-works" class="navbar-link">How It Works</a>
+        <a href="#testimonials" class="navbar-link">Testimonials</a>
+        <a href="#safety" class="navbar-link">Safety</a>
+      </div>
+
+      <div class="navbar-actions">
+        <a href="login.html" class="btn btn-ghost hide-mobile">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+        <button class="navbar-toggle" id="navToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#features" class="mobile-menu-link">Features</a>
+    <a href="#how-it-works" class="mobile-menu-link">How It Works</a>
+    <a href="#testimonials" class="mobile-menu-link">Testimonials</a>
+    <a href="#safety" class="mobile-menu-link">Safety</a>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px;">
+      <a href="login.html" class="btn btn-outline btn-block">Log In</a>
+      <a href="register.html" class="btn btn-primary btn-block">Get Started</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       HERO SECTION
+       ═══════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-grid-pattern"></div>
+    </div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            Now open for AITR students
+          </div>
+
+          <h1 class="hero-title">
+            Travel Together.<br>
+            <span class="highlight">Trust First.</span>
+          </h1>
+
+          <p class="hero-description">
+            Find verified college students who share your destination, budget and travel style. Start your journey with people you can trust.
+          </p>
+
+          <div class="hero-actions">
+            <a href="discover.html" class="btn btn-primary btn-lg">
+              🔍 Find Travel Partners
+            </a>
+            <a href="trips.html" class="btn btn-outline btn-lg">
+              ✈️ Post A Trip
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div>
+              <div class="hero-stat-value" data-count="2500">0</div>
+              <div class="hero-stat-label">Students Joined</div>
+            </div>
+            <div>
+              <div class="hero-stat-value" data-count="480">0</div>
+              <div class="hero-stat-label">Trips Completed</div>
+            </div>
+            <div>
+              <div class="hero-stat-value" data-count="98">0</div>
+              <div class="hero-stat-label">Trust Score %</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card-stack">
+            <!-- Profile Card -->
+            <div class="hero-float-card">
+              <div class="card-user">
+                <div class="avatar avatar-md" style="background: #DBEAFE; color: #2563EB;">A</div>
+                <div>
+                  <div class="card-user-name">Arjun Sharma</div>
+                  <div class="card-user-college">AITR · 3rd Year · CSE</div>
+                </div>
+                <span class="badge badge-success" style="margin-left: auto;">✓ Verified</span>
+              </div>
+              <div class="card-destination">📍 Manali → Spiti Valley</div>
+              <div class="card-tags">
+                <span class="mini-tag">🏔️ Mountains</span>
+                <span class="mini-tag">🎒 Adventure</span>
+                <span class="mini-tag">💰 Budget</span>
+              </div>
+            </div>
+
+            <!-- Match Score Card -->
+            <div class="hero-float-card hero-match-card">
+              <div class="hero-match-score">92%</div>
+              <div class="hero-match-label">Compatible</div>
+              <div style="display: flex; gap: 4px; justify-content: center; margin-top: 8px;">
+                <span class="mini-tag" style="background: #CCFBF1; color: #0D9488;">✓ Budget Match</span>
+              </div>
+            </div>
+
+            <!-- Trip Card -->
+            <div class="hero-float-card">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏖️</span>
+                <div>
+                  <div style="font-weight: 600; font-size: 14px;">Goa Beach Trip</div>
+                  <div style="font-size: 12px; color: var(--color-text-muted);">Dec 20 – Dec 25</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-weight: 700; color: var(--color-primary);">₹4,500 <span style="font-weight: 400; font-size: 12px; color: var(--color-text-muted);">/person</span></span>
+                <div class="avatar-group">
+                  <div class="avatar avatar-xs" style="background: #FED7AA; color: #EA580C;">P</div>
+                  <div class="avatar avatar-xs" style="background: #CCFBF1; color: #0D9488;">R</div>
+                  <div class="avatar avatar-xs" style="background: #DBEAFE; color: #2563EB;">+3</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       COLLEGES TICKER
+       ═══════════════════════════════════════════ -->
+  <section class="colleges-section">
+    <div class="colleges-label">Trusted by students from</div>
+    <div style="overflow: hidden;">
+      <div class="colleges-ticker">
+        <div class="college-logo"><span class="college-logo-icon">🎓</span> AITR</div>
+        <div class="college-logo"><span class="college-logo-icon">🏛️</span> IIT Indore</div>
+        <div class="college-logo"><span class="college-logo-icon">📚</span> DAVV</div>
+        <div class="college-logo"><span class="college-logo-icon">🎓</span> SGSITS</div>
+        <div class="college-logo"><span class="college-logo-icon">🏛️</span> IIM Indore</div>
+        <div class="college-logo"><span class="college-logo-icon">📚</span> Medi-Caps</div>
+        <div class="college-logo"><span class="college-logo-icon">🎓</span> Prestige</div>
+        <div class="college-logo"><span class="college-logo-icon">🏛️</span> SVVV</div>
+        <!-- Repeat for seamless loop -->
+        <div class="college-logo"><span class="college-logo-icon">🎓</span> AITR</div>
+        <div class="college-logo"><span class="college-logo-icon">🏛️</span> IIT Indore</div>
+        <div class="college-logo"><span class="college-logo-icon">📚</span> DAVV</div>
+        <div class="college-logo"><span class="college-logo-icon">🎓</span> SGSITS</div>
+        <div class="college-logo"><span class="college-logo-icon">🏛️</span> IIM Indore</div>
+        <div class="college-logo"><span class="college-logo-icon">📚</span> Medi-Caps</div>
+        <div class="college-logo"><span class="college-logo-icon">🎓</span> Prestige</div>
+        <div class="college-logo"><span class="college-logo-icon">🏛️</span> SVVV</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FEATURES SECTION
+       ═══════════════════════════════════════════ -->
+  <section class="section features-section" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="overline">Why Raahi?</span>
+        <h2 class="heading-2">Everything you need to travel with confidence</h2>
+        <p>Built specifically for college students who want to explore new places without the stress of finding trustworthy travel partners.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="feature-card reveal">
+          <div class="feature-icon feature-icon-primary">🛡️</div>
+          <h3>Verified Students Only</h3>
+          <p>Every user is verified through their college email and ID. No strangers — only fellow students you can trust.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon feature-icon-secondary">🤝</div>
+          <h3>Smart Matching</h3>
+          <p>Our algorithm matches you with travel partners based on destination, budget, travel style, and personality compatibility.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon feature-icon-accent">📊</div>
+          <h3>Trust Scores</h3>
+          <p>Build your reputation through reviews from past travel partners. Higher trust scores unlock more trip opportunities.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon feature-icon-secondary">💬</div>
+          <h3>Real-time Chat</h3>
+          <p>Connect with potential travel partners through our built-in messaging system with voice notes and media sharing.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon feature-icon-primary">🗺️</div>
+          <h3>Trip Planning</h3>
+          <p>Create and manage trips with detailed itineraries, shared expenses, and collaborative planning tools.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon feature-icon-accent">⭐</div>
+          <h3>Reviews & Ratings</h3>
+          <p>Rate your travel experience across safety, communication, and overall experience to help the community grow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       HOW IT WORKS
+       ═══════════════════════════════════════════ -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="overline">How It Works</span>
+        <h2 class="heading-2">Your journey starts here</h2>
+        <p>Get matched with compatible travel partners in just 4 simple steps.</p>
+      </div>
+
+      <div class="steps-container">
+        <div class="step-card reveal">
+          <div class="step-icon">📝</div>
+          <div class="step-number">1</div>
+          <h3>Create Your Profile</h3>
+          <p>Sign up with your college email, verify your identity, and take our travel personality quiz.</p>
+          <div class="step-connector"></div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-icon">🔍</div>
+          <div class="step-number">2</div>
+          <h3>Discover Trips</h3>
+          <p>Browse trips posted by other students or create your own. Filter by destination, budget, and dates.</p>
+          <div class="step-connector"></div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-icon">💬</div>
+          <div class="step-number">3</div>
+          <h3>Connect & Chat</h3>
+          <p>See your compatibility score, chat with potential partners, and decide if you're a good match.</p>
+          <div class="step-connector"></div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-icon">✈️</div>
+          <div class="step-number">4</div>
+          <h3>Travel Together</h3>
+          <p>Pack your bags and explore! After the trip, leave reviews to help build trust in the community.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       TESTIMONIALS
+       ═══════════════════════════════════════════ -->
+  <section class="section testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="overline">Testimonials</span>
+        <h2 class="heading-2">Loved by students across India</h2>
+        <p>Here's what fellow travelers have to say about their Raahi experience.</p>
+      </div>
+
+      <div class="testimonial-grid">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Found 3 amazing travel partners for my Ladakh trip within a day. The compatibility matching is surprisingly accurate — we all had the best time!"</p>
+          <div class="testimonial-author">
+            <div class="avatar avatar-md" style="background: #DBEAFE; color: #2563EB;">P</div>
+            <div>
+              <div class="testimonial-author-name">Priya Patel</div>
+              <div class="testimonial-author-info">AITR · 4th Year · IT</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"As a solo female traveler, safety was my biggest concern. Raahi's verification system and trust scores gave me the confidence to travel with new people."</p>
+          <div class="testimonial-author">
+            <div class="avatar avatar-md" style="background: #CCFBF1; color: #0D9488;">N</div>
+            <div>
+              <div class="testimonial-author-name">Neha Gupta</div>
+              <div class="testimonial-author-info">AITR · 3rd Year · CSE</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Saved so much money by splitting costs with compatible travel partners. The budget matching feature is genius — no awkward money conversations!"</p>
+          <div class="testimonial-author">
+            <div class="avatar avatar-md" style="background: #FED7AA; color: #EA580C;">R</div>
+            <div>
+              <div class="testimonial-author-name">Rahul Verma</div>
+              <div class="testimonial-author-info">AITR · 2nd Year · ECE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SAFETY SECTION
+       ═══════════════════════════════════════════ -->
+  <section class="section safety-section" id="safety">
+    <div class="container">
+      <div class="safety-content">
+        <div class="safety-text reveal-left">
+          <span class="overline">Safety First</span>
+          <h2 class="heading-2">Your safety is our<br>top priority</h2>
+          <p>We've built multiple layers of safety and verification to ensure every journey is a safe one.</p>
+
+          <div class="safety-features">
+            <div class="safety-feature">
+              <div class="safety-feature-icon" style="background: var(--color-primary-50); color: var(--color-primary);">🎓</div>
+              <div>
+                <h4>College Email Verification</h4>
+                <p>Every student must verify through their official college email address.</p>
+              </div>
+            </div>
+
+            <div class="safety-feature">
+              <div class="safety-feature-icon" style="background: var(--color-secondary-50); color: var(--color-secondary);">🪪</div>
+              <div>
+                <h4>ID Verification</h4>
+                <p>Government ID verification adds an extra layer of identity confirmation.</p>
+              </div>
+            </div>
+
+            <div class="safety-feature">
+              <div class="safety-feature-icon" style="background: var(--color-accent-50); color: var(--color-accent);">⭐</div>
+              <div>
+                <h4>Community Reviews</h4>
+                <p>Read reviews from past travel partners before joining any trip.</p>
+              </div>
+            </div>
+
+            <div class="safety-feature">
+              <div class="safety-feature-icon" style="background: var(--color-success-light); color: var(--color-success);">🆘</div>
+              <div>
+                <h4>Emergency SOS</h4>
+                <p>One-tap emergency button that shares your location with trusted contacts.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="safety-visual reveal-right">
+          <div class="safety-shield">
+            <div class="safety-shield-bg"></div>
+            <div class="safety-shield-icon">🛡️</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CTA SECTION
+       ═══════════════════════════════════════════ -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-banner reveal-scale">
+        <div class="cta-content">
+          <h2>Ready to find your perfect travel partner?</h2>
+          <p>Join 2,500+ students already traveling together with confidence and trust.</p>
+          <div class="cta-actions">
+            <a href="register.html" class="btn btn-white btn-lg">Get Started Free →</a>
+            <a href="discover.html" class="btn btn-lg" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3);">Browse Trips</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">RAAHI <span class="brand-dot" style="background: var(--color-accent);"></span></div>
+          <p class="footer-desc">Travel Together. Trust First. Find verified college students who share your destination, budget and travel style.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Product</h4>
+          <div class="footer-links">
+            <a href="discover.html" class="footer-link">Discover Trips</a>
+            <a href="trips.html" class="footer-link">Post a Trip</a>
+            <a href="#features" class="footer-link">Features</a>
+            <a href="#safety" class="footer-link">Safety</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Company</h4>
+          <div class="footer-links">
+            <a href="#" class="footer-link">About Us</a>
+            <a href="#" class="footer-link">Blog</a>
+            <a href="#" class="footer-link">Careers</a>
+            <a href="#" class="footer-link">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Legal</h4>
+          <div class="footer-links">
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">Community Guidelines</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Raahi. All rights reserved. Made with ❤️ for students.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/landing.js"></script>
+</body>
+</html>

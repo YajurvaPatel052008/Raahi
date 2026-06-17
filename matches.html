@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matches — Raahi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- Sidebar Overlay (Mobile) -->
+  <div class="sidebar-overlay"></div>
+
+  <!-- ═══════════════════════════════════════════
+       SIDEBAR
+       ═══════════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <a href="dashboard.html" class="sidebar-brand">
+        RAAHI <span class="brand-dot"></span>
+      </a>
+      <div class="sidebar-close">✕</div>
+    </div>
+    <nav class="sidebar-nav">
+      <!-- (Shortened for brevity) -->
+      <a href="dashboard.html" class="sidebar-link">
+        <span class="sidebar-link-icon">📊</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="discover.html" class="sidebar-link">
+        <span class="sidebar-link-icon">🔍</span>
+        <span>Discover</span>
+      </a>
+      <a href="matches.html" class="sidebar-link active">
+        <span class="sidebar-link-icon">🤝</span>
+        <span>Matches</span>
+        <span class="sidebar-link-badge">3</span>
+      </a>
+      <div class="sidebar-section-title mt-4">My Travel</div>
+      <a href="trips.html" class="sidebar-link">
+        <span class="sidebar-link-icon">✈️</span>
+        <span>My Trips</span>
+      </a>
+      <a href="chat.html" class="sidebar-link">
+        <span class="sidebar-link-icon">💬</span>
+        <span>Messages</span>
+        <span class="sidebar-link-badge">2</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ═══════════════════════════════════════════
+       APP HEADER
+       ═══════════════════════════════════════════ -->
+  <header class="app-header">
+    <div class="app-header-left">
+      <div class="sidebar-toggle-btn">☰</div>
+    </div>
+    <div class="app-header-right">
+      <button class="btn btn-icon btn-ghost">🔔</button>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN CONTENT
+       ═══════════════════════════════════════════ -->
+  <main class="main-content">
+    <div class="container container-full">
+      
+      <div class="page-header animate-fade-in-up">
+        <div class="page-header-left">
+          <h1 class="page-title">Your Matches</h1>
+          <p class="page-subtitle">Based on your travel personality and recent trips.</p>
+        </div>
+      </div>
+
+      <div class="tabs mb-6 animate-fade-in-up delay-1">
+        <div class="tab active">For Trips (2)</div>
+        <div class="tab">General Matches (1)</div>
+      </div>
+
+      <div class="grid grid-3 animate-fade-in-up delay-2">
+        
+        <!-- Match Card 1 -->
+        <div class="match-card">
+          <!-- SVG Gradient Definition -->
+          <svg width="0" height="0">
+            <defs>
+              <linearGradient id="matchGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#2563EB" />
+                <stop offset="100%" stop-color="#14B8A6" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          <div style="font-size: 13px; font-weight: 500; color: var(--color-primary); margin-bottom: 16px;">
+            For: Goa New Year Bash
+          </div>
+
+          <div class="match-users">
+            <div class="avatar avatar-xl" style="background: #DBEAFE; color: #2563EB;" title="You">A</div>
+            <div class="match-vs">VS</div>
+            <div class="avatar avatar-xl" style="background: #E0E7FF; color: #4338CA;" title="Sahil Jain">S</div>
+          </div>
+
+          <div class="match-score-circle" data-score="92">
+            <svg>
+              <circle class="match-score-track" cx="70" cy="70" r="64"></circle>
+              <circle class="match-score-fill" cx="70" cy="70" r="64" stroke-dasharray="402" stroke-dashoffset="402"></circle>
+            </svg>
+            <div class="match-score-value">0%</div>
+          </div>
+          <div class="match-score-label">Highly Compatible</div>
+
+          <div style="font-weight: 600; font-size: 16px; margin-bottom: 4px;">Sahil Jain</div>
+          <div style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 20px;">IIT Indore · 2nd Year</div>
+
+          <div class="match-details">
+            <div class="match-detail-row">
+              <span class="match-detail-icon">🏔️</span>
+              <span class="match-detail-label">Travel Style</span>
+              <span class="match-detail-value">Adventure Match</span>
+            </div>
+            <div class="match-detail-row">
+              <span class="match-detail-icon">💰</span>
+              <span class="match-detail-label">Budget Range</span>
+              <span class="match-detail-value">Perfect Match</span>
+            </div>
+            <div class="match-detail-row">
+              <span class="match-detail-icon">👥</span>
+              <span class="match-detail-label">Shared Interests</span>
+              <span class="match-detail-value">Photography</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 24px;">
+            <a href="chat.html" class="btn btn-primary" style="flex: 1;">Say Hello</a>
+            <button class="btn btn-outline" style="flex: 1;">View Profile</button>
+          </div>
+        </div>
+
+        <!-- Match Card 2 -->
+        <div class="match-card">
+          <div style="font-size: 13px; font-weight: 500; color: var(--color-primary); margin-bottom: 16px;">
+            For: Goa New Year Bash
+          </div>
+
+          <div class="match-users">
+            <div class="avatar avatar-xl" style="background: #DBEAFE; color: #2563EB;" title="You">A</div>
+            <div class="match-vs">VS</div>
+            <div class="avatar avatar-xl" style="background: #FFEDD5; color: #EA580C;" title="Karan Mehta">K</div>
+          </div>
+
+          <div class="match-score-circle" data-score="78">
+            <svg>
+              <circle class="match-score-track" cx="70" cy="70" r="64"></circle>
+              <circle class="match-score-fill" cx="70" cy="70" r="64" stroke-dasharray="402" stroke-dashoffset="402"></circle>
+            </svg>
+            <div class="match-score-value">0%</div>
+          </div>
+          <div class="match-score-label">Good Match</div>
+
+          <div style="font-weight: 600; font-size: 16px; margin-bottom: 4px;">Karan Mehta</div>
+          <div style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 20px;">DAVV · 3rd Year</div>
+
+          <div class="match-details">
+            <div class="match-detail-row">
+              <span class="match-detail-icon">🏔️</span>
+              <span class="match-detail-label">Travel Style</span>
+              <span class="match-detail-value">Relaxation</span>
+            </div>
+            <div class="match-detail-row">
+              <span class="match-detail-icon">💰</span>
+              <span class="match-detail-label">Budget Range</span>
+              <span class="match-detail-value">Perfect Match</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 24px;">
+            <a href="chat.html" class="btn btn-primary" style="flex: 1;">Say Hello</a>
+            <button class="btn btn-outline" style="flex: 1;">View Profile</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/matches.js"></script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages — Raahi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/chat.css">
+</head>
+<body style="overflow: hidden;"> <!-- Prevent body scroll for app-like chat -->
+
+  <!-- Sidebar Overlay (Mobile) -->
+  <div class="sidebar-overlay"></div>
+
+  <!-- ═══════════════════════════════════════════
+       SIDEBAR
+       ═══════════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <a href="dashboard.html" class="sidebar-brand">
+        RAAHI <span class="brand-dot"></span>
+      </a>
+      <div class="sidebar-close">✕</div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="sidebar-link">
+        <span class="sidebar-link-icon">📊</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="discover.html" class="sidebar-link">
+        <span class="sidebar-link-icon">🔍</span>
+        <span>Discover</span>
+      </a>
+      <a href="matches.html" class="sidebar-link">
+        <span class="sidebar-link-icon">🤝</span>
+        <span>Matches</span>
+        <span class="sidebar-link-badge">3</span>
+      </a>
+      <div class="sidebar-section-title mt-4">My Travel</div>
+      <a href="trips.html" class="sidebar-link">
+        <span class="sidebar-link-icon">✈️</span>
+        <span>My Trips</span>
+      </a>
+      <a href="chat.html" class="sidebar-link active">
+        <span class="sidebar-link-icon">💬</span>
+        <span>Messages</span>
+        <span class="sidebar-link-badge">2</span>
+      </a>
+      <a href="reviews.html" class="sidebar-link">
+        <span class="sidebar-link-icon">⭐</span>
+        <span>Reviews</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ═══════════════════════════════════════════
+       APP HEADER
+       ═══════════════════════════════════════════ -->
+  <header class="app-header">
+    <div class="app-header-left">
+      <div class="sidebar-toggle-btn">☰</div>
+    </div>
+    <div class="app-header-right">
+      <button class="btn btn-icon btn-ghost">🔔</button>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       CHAT LAYOUT
+       ═══════════════════════════════════════════ -->
+  <main class="main-content" style="padding: 0; height: calc(100vh - 72px);">
+    <div class="chat-layout animate-fade-in">
+      
+      <!-- Chat List (Sidebar) -->
+      <div class="chat-sidebar" id="chatSidebar">
+        <div class="chat-sidebar-header">
+          <h2 style="font-size: 20px; font-weight: 700;">Messages</h2>
+          <button class="btn btn-icon btn-ghost">✏️</button>
+        </div>
+
+        <div style="padding: 16px;">
+          <div class="input-group" style="margin: 0;">
+            <div class="input-with-icon">
+              <span class="input-icon-left">🔍</span>
+              <input type="text" class="input" placeholder="Search messages..." style="padding-left: 36px;">
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-list">
+          <!-- Active Chat -->
+          <div class="chat-list-item active" onclick="switchChat(this, 'Priya Patel')">
+            <div class="avatar-status status-online">
+              <div class="avatar avatar-md" style="background: #CCFBF1; color: #0D9488;">P</div>
+            </div>
+            <div class="chat-list-info">
+              <div class="chat-list-name">Priya Patel</div>
+              <div class="chat-list-preview">Are we still meeting at the station?</div>
+            </div>
+            <div class="chat-list-meta">
+              <div class="chat-list-time">10:42 AM</div>
+              <div class="chat-list-unread">2</div>
+            </div>
+          </div>
+
+          <!-- Group Chat -->
+          <div class="chat-list-item" onclick="switchChat(this, 'Goa Trip Group')">
+            <div class="avatar-group">
+              <div class="avatar avatar-md" style="background: #DBEAFE; color: #2563EB;">A</div>
+              <div class="avatar avatar-md" style="background: #FED7AA; color: #EA580C; margin-left: -16px;">R</div>
+            </div>
+            <div class="chat-list-info" style="margin-left: 12px;">
+              <div class="chat-list-name">Goa Trip Group</div>
+              <div class="chat-list-preview">Rahul: I'll book the tickets tonight.</div>
+            </div>
+            <div class="chat-list-meta">
+              <div class="chat-list-time">Yesterday</div>
+            </div>
+          </div>
+
+          <!-- Offline Chat -->
+          <div class="chat-list-item" onclick="switchChat(this, 'Neha Gupta')">
+            <div class="avatar avatar-md" style="background: #F3E8FF; color: #7E22CE;">N</div>
+            <div class="chat-list-info">
+              <div class="chat-list-name">Neha Gupta</div>
+              <div class="chat-list-preview">Thanks for the trip details!</div>
+            </div>
+            <div class="chat-list-meta">
+              <div class="chat-list-time">Mon</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Main Area -->
+      <div class="chat-main" id="chatMain">
+        
+        <!-- Header -->
+        <div class="chat-header">
+          <button class="chat-back-btn hide-desktop" onclick="closeChat()">←</button>
+          <div class="avatar-status status-online">
+            <div class="avatar avatar-sm" style="background: #CCFBF1; color: #0D9488;">P</div>
+          </div>
+          <div class="chat-header-info">
+            <h3 class="chat-header-name" id="currentChatName">Priya Patel</h3>
+            <div class="chat-header-status">Online</div>
+          </div>
+          <div class="chat-header-actions">
+            <button class="btn btn-icon btn-ghost">📞</button>
+            <button class="btn btn-icon btn-ghost">ℹ️</button>
+          </div>
+        </div>
+
+        <!-- Messages Area -->
+        <div class="chat-messages" id="chatMessages">
+          
+          <div class="chat-date-divider">Today</div>
+
+          <div class="message message-in">
+            <div class="avatar avatar-sm" style="background: #CCFBF1; color: #0D9488;">P</div>
+            <div class="message-content">
+              <div class="message-bubble">Hey Arjun! So excited for the trip next month.</div>
+              <div class="message-time">10:30 AM</div>
+            </div>
+          </div>
+
+          <div class="message message-out">
+            <div class="message-content">
+              <div class="message-bubble">Same here! I was just looking at the itinerary.</div>
+              <div class="message-time">10:35 AM</div>
+            </div>
+          </div>
+
+          <div class="message message-in">
+            <div class="avatar avatar-sm" style="background: #CCFBF1; color: #0D9488;">P</div>
+            <div class="message-content">
+              <div class="message-bubble">
+                <div class="voice-note">
+                  <button class="voice-play">▶</button>
+                  <div class="voice-waveform"></div>
+                  <div class="voice-time">0:15</div>
+                </div>
+              </div>
+              <div class="message-time">10:40 AM</div>
+            </div>
+          </div>
+
+          <div class="message message-in">
+            <div class="avatar avatar-sm" style="background: #CCFBF1; color: #0D9488;">P</div>
+            <div class="message-content">
+              <div class="message-bubble">Are we still meeting at the station?</div>
+              <div class="message-time">10:42 AM</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Input Area -->
+        <div class="chat-input-area">
+          <div class="chat-attachment-preview hidden" id="attachmentPreview">
+            <!-- Populated by JS -->
+          </div>
+          
+          <form class="chat-input-wrapper" id="chatForm" onsubmit="event.preventDefault(); sendMessage();">
+            <button type="button" class="btn btn-icon btn-ghost chat-input-action" onclick="document.getElementById('fileInput').click()">📎</button>
+            <input type="file" id="fileInput" hidden accept="image/*" onchange="handleFileSelect(event)">
+            
+            <input type="text" id="messageInput" class="chat-input" placeholder="Type a message..." autocomplete="off">
+            
+            <button type="button" class="btn btn-icon btn-ghost chat-input-action" id="micBtn" onmousedown="startRecording()" onmouseup="stopRecording()" onmouseleave="stopRecording()">🎤</button>
+            <button type="submit" class="btn btn-icon btn-primary chat-send-btn">➤</button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>

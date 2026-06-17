@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — Raahi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- Sidebar Overlay (Mobile) -->
+  <div class="sidebar-overlay"></div>
+
+  <!-- ═══════════════════════════════════════════
+       SIDEBAR
+       ═══════════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <a href="dashboard.html" class="sidebar-brand">
+        RAAHI <span class="brand-dot"></span>
+      </a>
+      <div class="sidebar-close">✕</div>
+    </div>
+    <nav class="sidebar-nav">
+      <!-- (Shortened for brevity) -->
+      <a href="dashboard.html" class="sidebar-link">
+        <span class="sidebar-link-icon">📊</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="discover.html" class="sidebar-link">
+        <span class="sidebar-link-icon">🔍</span>
+        <span>Discover</span>
+      </a>
+      <a href="trips.html" class="sidebar-link">
+        <span class="sidebar-link-icon">✈️</span>
+        <span>My Trips</span>
+      </a>
+      <div class="sidebar-section-title mt-4">Account</div>
+      <a href="profile.html" class="sidebar-link">
+        <span class="sidebar-link-icon">👤</span>
+        <span>Profile</span>
+      </a>
+      <a href="settings.html" class="sidebar-link active">
+        <span class="sidebar-link-icon">⚙️</span>
+        <span>Settings</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ═══════════════════════════════════════════
+       APP HEADER
+       ═══════════════════════════════════════════ -->
+  <header class="app-header">
+    <div class="app-header-left">
+      <div class="sidebar-toggle-btn">☰</div>
+    </div>
+    <div class="app-header-right">
+      <button class="btn btn-icon btn-ghost">🔔</button>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN CONTENT
+       ═══════════════════════════════════════════ -->
+  <main class="main-content">
+    <div class="container container-md">
+      
+      <div class="page-header animate-fade-in-up">
+        <div class="page-header-left">
+          <h1 class="page-title">Settings</h1>
+          <p class="page-subtitle">Manage your account preferences and security.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-3 gap-6 animate-fade-in-up delay-1">
+        
+        <!-- Left Sidebar for Settings Tabs -->
+        <div style="grid-column: span 1;" class="hide-mobile">
+          <div class="card p-2">
+            <nav style="display: flex; flex-direction: column; gap: 4px;">
+              <a href="#account" class="btn btn-ghost" style="justify-content: flex-start; text-align: left; background: var(--color-bg-secondary);">👤 Account Details</a>
+              <a href="#security" class="btn btn-ghost" style="justify-content: flex-start; text-align: left;">🔒 Security</a>
+              <a href="#notifications" class="btn btn-ghost" style="justify-content: flex-start; text-align: left;">🔔 Notifications</a>
+              <a href="#verification" class="btn btn-ghost" style="justify-content: flex-start; text-align: left;">🛡️ Verifications</a>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Right Content Area -->
+        <div style="grid-column: span 2;" class="flex-col gap-6" id="settingsContent">
+          
+          <!-- Account Details -->
+          <div class="card" id="account">
+            <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 24px;">Account Details</h2>
+            
+            <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 32px;">
+              <div class="avatar avatar-2xl" style="background: #DBEAFE; color: #2563EB;">A</div>
+              <div>
+                <button class="btn btn-outline btn-sm mb-2">Change Avatar</button>
+                <div style="font-size: 12px; color: var(--color-text-muted);">JPG or PNG, max 2MB.</div>
+              </div>
+            </div>
+
+            <form onsubmit="event.preventDefault(); window.showToast('Settings Saved', 'Your profile details have been updated.');">
+              <div class="form-grid form-grid-2">
+                <div class="input-group">
+                  <label class="input-label">First Name</label>
+                  <input type="text" class="input" value="Arjun">
+                </div>
+                <div class="input-group">
+                  <label class="input-label">Last Name</label>
+                  <input type="text" class="input" value="Sharma">
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label class="input-label">Bio</label>
+                <textarea class="input" rows="3">Adventure enthusiast and photography lover. Always looking for the next mountain to climb. Let's explore together!</textarea>
+              </div>
+
+              <div class="input-group">
+                <label class="input-label">Phone Number</label>
+                <input type="tel" class="input" value="+91 98765 43210">
+              </div>
+
+              <button type="submit" class="btn btn-primary mt-2">Save Changes</button>
+            </form>
+          </div>
+
+          <!-- Notifications -->
+          <div class="card" id="notifications">
+            <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 24px;">Notifications</h2>
+            
+            <div class="flex-col gap-4">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-weight: 500; font-size: 14px;">New Messages</div>
+                  <div style="font-size: 13px; color: var(--color-text-muted);">Receive an email when someone sends you a message.</div>
+                </div>
+                <label class="checkbox-group">
+                  <input type="checkbox" checked>
+                </label>
+              </div>
+              
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-weight: 500; font-size: 14px;">Trip Requests</div>
+                  <div style="font-size: 13px; color: var(--color-text-muted);">Receive an email when someone requests to join your trip.</div>
+                </div>
+                <label class="checkbox-group">
+                  <input type="checkbox" checked>
+                </label>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-weight: 500; font-size: 14px;">New Matches</div>
+                  <div style="font-size: 13px; color: var(--color-text-muted);">Get notified when we find a high-compatibility match for you.</div>
+                </div>
+                <label class="checkbox-group">
+                  <input type="checkbox">
+                </label>
+              </div>
+            </div>
+            <button class="btn btn-primary mt-6" onclick="window.showToast('Preferences Saved', 'Notification settings updated.')">Save Preferences</button>
+          </div>
+
+          <!-- Danger Zone -->
+          <div class="card" style="border-color: var(--color-error-light); background: #FEF2F2;">
+            <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-error);">Danger Zone</h2>
+            <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 16px;">Once you delete your account, there is no going back. Please be certain.</p>
+            <button class="btn" style="background: var(--color-error); color: white;">Delete Account</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  
+  <style>
+    @media (max-width: 768px) {
+      .grid-3 > div[style*="grid-column: span 2"] {
+        grid-column: span 1 !important;
+      }
+    }
+  </style>
+</body>
+</html>

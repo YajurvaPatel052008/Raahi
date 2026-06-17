@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up — Raahi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-left">
+      <div class="auth-card" style="max-width: 520px;">
+        <a href="index.html" class="auth-brand">
+          RAAHI <span class="brand-dot"></span>
+        </a>
+
+        <div class="auth-header">
+          <h1>Create an account</h1>
+          <p>Join the community of verified college travelers.</p>
+        </div>
+
+        <form class="auth-form" id="registerForm" onsubmit="event.preventDefault(); simulateAuth('verify-email.html');">
+          <div class="auth-form-row">
+            <div class="input-group">
+              <label for="firstName" class="input-label">First Name <span class="required">*</span></label>
+              <input type="text" id="firstName" class="input" placeholder="e.g. Rahul" required>
+              <span class="input-error-msg" style="display: none;"></span>
+            </div>
+            <div class="input-group">
+              <label for="lastName" class="input-label">Last Name <span class="required">*</span></label>
+              <input type="text" id="lastName" class="input" placeholder="e.g. Verma" required>
+              <span class="input-error-msg" style="display: none;"></span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="email" class="input-label">College Email <span class="required">*</span></label>
+            <input type="email" id="email" class="input" placeholder="your.name@college.edu.in" required>
+            <span class="input-error-msg" style="display: none;"></span>
+            <div style="font-size: 11px; color: var(--color-text-muted); margin-top: 4px;">
+              You must use an active .edu.in or college domain email.
+            </div>
+          </div>
+
+          <div class="auth-form-row">
+            <div class="input-group">
+              <label for="college" class="input-label">College <span class="required">*</span></label>
+              <select id="college" class="input" required>
+                <option value="" disabled selected>Select College</option>
+                <option value="aitr">Acropolis Institute of Technology and Research (AITR)</option>
+                <option value="iit">IIT Indore</option>
+                <option value="sgsits">SGSITS</option>
+                <option value="davv">DAVV</option>
+                <option value="medicaps">Medi-Caps University</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="year" class="input-label">Year of Study <span class="required">*</span></label>
+              <select id="year" class="input" required>
+                <option value="" disabled selected>Select Year</option>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+                <option value="postgrad">Postgraduate</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="password" class="input-label">Password <span class="required">*</span></label>
+            <div class="input-with-icon">
+              <input type="password" id="password" class="input" placeholder="Create a strong password" required oninput="updatePasswordStrength(this.value)">
+              <span class="input-icon-right toggle-password" onclick="togglePasswordVisibility('password')">👁️</span>
+            </div>
+            <div class="password-strength">
+              <div class="password-strength-bar" id="strengthBar1"></div>
+              <div class="password-strength-bar" id="strengthBar2"></div>
+              <div class="password-strength-bar" id="strengthBar3"></div>
+            </div>
+            <div class="password-strength-text" id="strengthText">Password must be at least 8 characters.</div>
+            <span class="input-error-msg" style="display: none;"></span>
+          </div>
+
+          <div class="auth-form-options mt-2">
+            <label class="checkbox-group">
+              <input type="checkbox" id="terms" required>
+              <span style="font-size: 13px;">I agree to the <a href="#" style="color: var(--color-primary);">Terms of Service</a> and <a href="#" style="color: var(--color-primary);">Privacy Policy</a>.</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg mt-3" id="submitBtn">Create Account</button>
+        </form>
+
+        <div class="auth-footer">
+          Already have an account? <a href="login.html">Log in</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-right">
+      <div class="auth-right-content">
+        <div class="auth-right-illustration">🤝</div>
+        <h2>Trust is our foundation</h2>
+        <p>We verify every student so you can travel with complete peace of mind.</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 32px; text-align: left;">
+          <div style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 12px;">
+            <div style="font-size: 24px;">✅</div>
+            <div>
+              <div style="font-weight: 600; font-size: 14px;">100% Verified Users</div>
+              <div style="font-size: 12px; opacity: 0.8;">No strangers, only students.</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 12px;">
+            <div style="font-size: 24px;">🎯</div>
+            <div>
+              <div style="font-weight: 600; font-size: 14px;">Smart Matching</div>
+              <div style="font-size: 12px; opacity: 0.8;">Find your perfect travel buddy.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

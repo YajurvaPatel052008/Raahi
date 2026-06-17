@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Trips — Raahi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- Sidebar Overlay (Mobile) -->
+  <div class="sidebar-overlay"></div>
+
+  <!-- ═══════════════════════════════════════════
+       SIDEBAR
+       ═══════════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <a href="dashboard.html" class="sidebar-brand">
+        RAAHI <span class="brand-dot"></span>
+      </a>
+      <div class="sidebar-close">✕</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-title">Main</div>
+      <a href="dashboard.html" class="sidebar-link">
+        <span class="sidebar-link-icon">📊</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="discover.html" class="sidebar-link">
+        <span class="sidebar-link-icon">🔍</span>
+        <span>Discover</span>
+      </a>
+      <a href="matches.html" class="sidebar-link">
+        <span class="sidebar-link-icon">🤝</span>
+        <span>Matches</span>
+        <span class="sidebar-link-badge">3</span>
+      </a>
+
+      <div class="sidebar-section-title mt-4">My Travel</div>
+      <a href="trips.html" class="sidebar-link active">
+        <span class="sidebar-link-icon">✈️</span>
+        <span>My Trips</span>
+      </a>
+      <a href="chat.html" class="sidebar-link">
+        <span class="sidebar-link-icon">💬</span>
+        <span>Messages</span>
+        <span class="sidebar-link-badge">2</span>
+      </a>
+      <a href="reviews.html" class="sidebar-link">
+        <span class="sidebar-link-icon">⭐</span>
+        <span>Reviews</span>
+      </a>
+
+      <div class="sidebar-section-title mt-4">Account</div>
+      <a href="profile.html" class="sidebar-link">
+        <span class="sidebar-link-icon">👤</span>
+        <span>Profile</span>
+      </a>
+      <a href="settings.html" class="sidebar-link">
+        <span class="sidebar-link-icon">⚙️</span>
+        <span>Settings</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ═══════════════════════════════════════════
+       APP HEADER
+       ═══════════════════════════════════════════ -->
+  <header class="app-header">
+    <div class="app-header-left">
+      <div class="sidebar-toggle-btn">☰</div>
+    </div>
+    <div class="app-header-right">
+      <button class="btn btn-icon btn-ghost">🔔</button>
+      <button class="btn btn-primary btn-sm hide-mobile" onclick="openCreateTripModal()">+ New Trip</button>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN CONTENT
+       ═══════════════════════════════════════════ -->
+  <main class="main-content">
+    <div class="container container-full">
+      
+      <div class="page-header animate-fade-in-up">
+        <div class="page-header-left">
+          <h1 class="page-title">My Trips</h1>
+          <p class="page-subtitle">Manage your upcoming and past travel plans.</p>
+        </div>
+        <button class="btn btn-primary show-mobile-only" onclick="openCreateTripModal()">+ New Trip</button>
+      </div>
+
+      <div class="tabs mb-6 animate-fade-in-up delay-1" id="tripTabs">
+        <div class="tab active" data-target="upcoming">Upcoming <span class="tab-count">2</span></div>
+        <div class="tab" data-target="past">Past Trips <span class="tab-count">4</span></div>
+      </div>
+
+      <div class="grid grid-3 animate-fade-in-up delay-2" id="tripsGrid">
+        <!-- Trip Card 1 -->
+        <a href="trip-detail.html" class="trip-card">
+          <div class="trip-card-image-placeholder" style="background: linear-gradient(135deg, #DBEAFE, #CCFBF1); color: #2563EB;">🏖️</div>
+          <div class="trip-card-badge badge badge-primary">Hosting</div>
+          <div class="trip-card-body">
+            <h3 class="trip-card-destination">Goa New Year Bash</h3>
+            <div class="trip-card-dates">
+              <span>📅 Dec 28, 2026 - Jan 2, 2027</span>
+            </div>
+            <p class="trip-card-desc">Looking for chill people to share an Airbnb in North Goa. Mostly beach hopping, cafes, and a couple of parties.</p>
+            <div class="trip-card-meta">
+              <div class="trip-card-budget">₹15,000 <span>/person</span></div>
+              <div class="trip-card-travelers">
+                <div class="avatar-group">
+                  <div class="avatar avatar-sm" style="background: #DBEAFE; color: #2563EB;">A</div>
+                  <div class="avatar avatar-sm" style="background: #CCFBF1; color: #0D9488;">P</div>
+                </div>
+                <span>2/4 Joined</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Trip Card 2 -->
+        <a href="trip-detail.html" class="trip-card">
+          <div class="trip-card-image-placeholder" style="background: linear-gradient(135deg, #FFF7ED, #FFEDD5); color: #EA580C;">🏔️</div>
+          <div class="trip-card-badge badge badge-success">Joined</div>
+          <div class="trip-card-body">
+            <h3 class="trip-card-destination">Manali Winter Trek</h3>
+            <div class="trip-card-dates">
+              <span>📅 Feb 10 - Feb 15, 2027</span>
+            </div>
+            <p class="trip-card-desc">A moderately challenging trek in the snow. Need people who are physically fit and love the cold!</p>
+            <div class="trip-card-meta">
+              <div class="trip-card-budget">₹8,500 <span>/person</span></div>
+              <div class="trip-card-travelers">
+                <div class="avatar-group">
+                  <div class="avatar avatar-sm" style="background: #E2E8F0; color: #475569;">+3</div>
+                </div>
+                <span>Full</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       CREATE TRIP MODAL
+       ═══════════════════════════════════════════ -->
+  <div class="modal-overlay" id="createTripModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Create a New Trip</h3>
+        <button class="modal-close" data-close-modal>✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="createTripForm" class="create-trip-form" onsubmit="event.preventDefault(); submitTrip();">
+          
+          <div class="input-group">
+            <label for="tripTitle" class="input-label">Trip Title <span class="required">*</span></label>
+            <input type="text" id="tripTitle" class="input" placeholder="e.g. Weekend getaway to Jaipur" required>
+          </div>
+
+          <div class="form-grid form-grid-2">
+            <div class="input-group">
+              <label for="destination" class="input-label">Destination <span class="required">*</span></label>
+              <input type="text" id="destination" class="input" placeholder="City or Place" required>
+            </div>
+            <div class="input-group">
+              <label for="budget" class="input-label">Estimated Budget (₹) <span class="required">*</span></label>
+              <input type="number" id="budget" class="input" placeholder="Per person" required>
+            </div>
+          </div>
+
+          <div class="form-grid form-grid-2">
+            <div class="input-group">
+              <label for="startDate" class="input-label">Start Date <span class="required">*</span></label>
+              <input type="date" id="startDate" class="input" required>
+            </div>
+            <div class="input-group">
+              <label for="endDate" class="input-label">End Date <span class="required">*</span></label>
+              <input type="date" id="endDate" class="input" required>
+            </div>
+          </div>
+
+          <div class="form-grid form-grid-2">
+            <div class="input-group">
+              <label for="travelType" class="input-label">Travel Style</label>
+              <select id="travelType" class="input">
+                <option value="adventure">🏔️ Adventure & Outdoors</option>
+                <option value="relax">🏖️ Beach & Relaxation</option>
+                <option value="culture">🏛️ Heritage & Culture</option>
+                <option value="party">🎉 Nightlife & Party</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="groupSize" class="input-label">Max Group Size</label>
+              <select id="groupSize" class="input">
+                <option value="2">2 people</option>
+                <option value="4" selected>4 people</option>
+                <option value="6">6 people</option>
+                <option value="8">8+ people</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="description" class="input-label">Description <span class="required">*</span></label>
+            <textarea id="description" class="input" placeholder="What's the plan? What kind of people are you looking for?" required></textarea>
+          </div>
+
+          <div class="modal-footer" style="padding: 0; border: none; margin-top: 16px;">
+            <button type="button" class="btn btn-ghost" data-close-modal>Cancel</button>
+            <button type="submit" class="btn btn-primary" id="publishBtn">Publish Trip</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/trips.js"></script>
+</body>
+</html>

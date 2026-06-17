@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Raahi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- Sidebar Overlay (Mobile) -->
+  <div class="sidebar-overlay"></div>
+
+  <!-- ═══════════════════════════════════════════
+       SIDEBAR
+       ═══════════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <a href="dashboard.html" class="sidebar-brand">
+        RAAHI <span class="brand-dot"></span>
+      </a>
+      <div class="sidebar-close">✕</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-title">Main</div>
+      <a href="dashboard.html" class="sidebar-link active">
+        <span class="sidebar-link-icon">📊</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="discover.html" class="sidebar-link">
+        <span class="sidebar-link-icon">🔍</span>
+        <span>Discover</span>
+      </a>
+      <a href="matches.html" class="sidebar-link">
+        <span class="sidebar-link-icon">🤝</span>
+        <span>Matches</span>
+        <span class="sidebar-link-badge">3</span>
+      </a>
+
+      <div class="sidebar-section-title mt-4">My Travel</div>
+      <a href="trips.html" class="sidebar-link">
+        <span class="sidebar-link-icon">✈️</span>
+        <span>My Trips</span>
+      </a>
+      <a href="chat.html" class="sidebar-link">
+        <span class="sidebar-link-icon">💬</span>
+        <span>Messages</span>
+        <span class="sidebar-link-badge">2</span>
+      </a>
+      <a href="reviews.html" class="sidebar-link">
+        <span class="sidebar-link-icon">⭐</span>
+        <span>Reviews</span>
+      </a>
+
+      <div class="sidebar-section-title mt-4">Account</div>
+      <a href="profile.html" class="sidebar-link">
+        <span class="sidebar-link-icon">👤</span>
+        <span>Profile</span>
+      </a>
+      <a href="settings.html" class="sidebar-link">
+        <span class="sidebar-link-icon">⚙️</span>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user dropdown">
+        <div class="avatar avatar-sm avatar-status" style="background: #DBEAFE; color: #2563EB;">A</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">Arjun Sharma</div>
+          <div class="sidebar-user-email">arjun@aitr.edu.in</div>
+        </div>
+        <div class="dropdown-trigger" style="color: var(--color-text-muted);">⋮</div>
+        
+        <div class="dropdown-menu">
+          <a href="profile.html" class="dropdown-item">View Profile</a>
+          <a href="settings.html" class="dropdown-item">Account Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="login.html" class="dropdown-item" style="color: var(--color-error);">Log out</a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════════════════════
+       APP HEADER
+       ═══════════════════════════════════════════ -->
+  <header class="app-header">
+    <div class="app-header-left">
+      <div class="sidebar-toggle-btn">☰</div>
+      <div style="font-weight: 600;">Good morning, Arjun! 👋</div>
+    </div>
+
+    <div class="app-header-right">
+      <div class="dropdown">
+        <button class="btn btn-icon btn-ghost dropdown-trigger" style="position: relative;">
+          🔔
+          <span style="position: absolute; top: 6px; right: 8px; width: 8px; height: 8px; background: var(--color-error); border-radius: 50%;"></span>
+        </button>
+        <div class="dropdown-menu" style="width: 300px; padding: 0;">
+          <div style="padding: 12px 16px; border-bottom: 1px solid var(--color-border-light); font-weight: 600;">Notifications</div>
+          <div style="max-height: 300px; overflow-y: auto;">
+            <a href="#" style="display: flex; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--color-border-light); background: var(--color-primary-50);">
+              <div class="avatar avatar-sm" style="background: #CCFBF1; color: #0D9488; flex-shrink: 0;">N</div>
+              <div>
+                <div style="font-size: 13px; color: var(--color-text);"><strong>Neha Gupta</strong> requested to join your Goa trip.</div>
+                <div style="font-size: 11px; color: var(--color-text-light); margin-top: 4px;">2 hours ago</div>
+              </div>
+            </a>
+            <a href="#" style="display: flex; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--color-border-light);">
+              <div class="avatar avatar-sm" style="background: #FED7AA; color: #EA580C; flex-shrink: 0;">R</div>
+              <div>
+                <div style="font-size: 13px; color: var(--color-text);"><strong>Rahul Verma</strong> sent you a message.</div>
+                <div style="font-size: 11px; color: var(--color-text-light); margin-top: 4px;">5 hours ago</div>
+              </div>
+            </a>
+          </div>
+          <a href="#" style="display: block; text-align: center; padding: 12px; font-size: 13px; color: var(--color-primary); font-weight: 500;">View all</a>
+        </div>
+      </div>
+      <a href="trips.html#create" class="btn btn-primary btn-sm hide-mobile">+ New Trip</a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN CONTENT
+       ═══════════════════════════════════════════ -->
+  <main class="main-content">
+    <div class="container container-full">
+      
+      <div class="page-header animate-fade-in-up">
+        <div class="page-header-left">
+          <h1 class="page-title">Dashboard</h1>
+          <p class="page-subtitle">Here's what's happening with your travel plans.</p>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid mb-8 animate-fade-in-up delay-1">
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background: var(--color-primary-50); color: var(--color-primary);">✈️</div>
+          <div>
+            <div class="stat-card-value">2</div>
+            <div class="stat-card-label">Upcoming Trips</div>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background: var(--color-secondary-50); color: var(--color-secondary);">🤝</div>
+          <div>
+            <div class="stat-card-value">5</div>
+            <div class="stat-card-label">New Matches</div>
+            <div class="stat-card-change positive">↑ 2 this week</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background: var(--color-accent-50); color: var(--color-accent);">⭐</div>
+          <div>
+            <div class="stat-card-value">4.8</div>
+            <div class="stat-card-label">Trust Score</div>
+            <div class="stat-card-change positive">Based on 12 reviews</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background: var(--color-bg-tertiary); color: var(--color-text-muted);">👀</div>
+          <div>
+            <div class="stat-card-value">24</div>
+            <div class="stat-card-label">Profile Views</div>
+            <div class="stat-card-change positive">↑ 15%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-3 animate-fade-in-up delay-2">
+        
+        <!-- Left Column (Wider) -->
+        <div style="grid-column: span 1;" class="dashboard-left">
+          
+          <div class="card mb-6">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+              <h3 style="font-size: 16px; font-weight: 600;">Upcoming Trip</h3>
+              <a href="trips.html" style="font-size: 13px; color: var(--color-primary); font-weight: 500;">View Details</a>
+            </div>
+            
+            <div style="display: flex; gap: 16px;">
+              <div style="width: 80px; height: 80px; border-radius: 12px; background: var(--color-primary-100); display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0;">🏖️</div>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 16px; margin-bottom: 4px;">Goa New Year Bash</div>
+                <div style="font-size: 13px; color: var(--color-text-muted); display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                  📅 Dec 28 - Jan 2
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <div class="avatar-group">
+                    <div class="avatar avatar-sm" style="background: #DBEAFE; color: #2563EB;" title="You">A</div>
+                    <div class="avatar avatar-sm" style="background: #CCFBF1; color: #0D9488;">P</div>
+                    <div class="avatar avatar-sm" style="background: #FED7AA; color: #EA580C;">R</div>
+                  </div>
+                  <span class="badge badge-success">Confirmed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 20px;">Quick Actions</h3>
+            <div class="quick-actions">
+              <a href="discover.html" class="quick-action">
+                <div class="quick-action-icon">🔍</div>
+                <div class="quick-action-label">Find Trips</div>
+              </a>
+              <a href="trips.html#create" class="quick-action">
+                <div class="quick-action-icon">✈️</div>
+                <div class="quick-action-label">Post Trip</div>
+              </a>
+              <a href="profile.html" class="quick-action">
+                <div class="quick-action-icon">👤</div>
+                <div class="quick-action-label">Edit Profile</div>
+              </a>
+              <a href="matches.html" class="quick-action">
+                <div class="quick-action-icon">🤝</div>
+                <div class="quick-action-label">Matches</div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column (Narrower) -->
+        <div style="grid-column: span 1;" class="dashboard-right">
+          
+          <div class="card h-full">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+              <h3 style="font-size: 16px; font-weight: 600;">Recent Activity</h3>
+            </div>
+
+            <div class="activity-feed">
+              <div class="activity-item">
+                <div class="activity-dot" style="background: var(--color-primary);"></div>
+                <div class="activity-content">
+                  <div class="activity-text"><strong>Priya Patel</strong> accepted your trip request for Ladakh.</div>
+                  <div class="activity-time">2 hours ago</div>
+                </div>
+              </div>
+              
+              <div class="activity-item">
+                <div class="activity-dot" style="background: var(--color-secondary);"></div>
+                <div class="activity-content">
+                  <div class="activity-text">You have a new <strong>92% match</strong> for your upcoming Goa trip.</div>
+                  <div class="activity-time">5 hours ago</div>
+                </div>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-dot" style="background: var(--color-warning);"></div>
+                <div class="activity-content">
+                  <div class="activity-text"><strong>Rahul Verma</strong> left you a 5-star review.</div>
+                  <div class="activity-time">Yesterday</div>
+                </div>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-dot" style="background: var(--color-border);"></div>
+                <div class="activity-content">
+                  <div class="activity-text">You successfully verified your college email.</div>
+                  <div class="activity-time">3 days ago</div>
+                </div>
+              </div>
+            </div>
+            
+            <a href="#" style="display: block; text-align: center; margin-top: 16px; font-size: 13px; color: var(--color-primary); font-weight: 500;">View all activity</a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  
+  <style>
+    @media (min-width: 1024px) {
+      .dashboard-left { grid-column: span 2 !important; }
+      .dashboard-right { grid-column: span 1 !important; }
+    }
+  </style>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover Trips — Raahi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- Sidebar Overlay (Mobile) -->
+  <div class="sidebar-overlay"></div>
+
+  <!-- ═══════════════════════════════════════════
+       SIDEBAR
+       ═══════════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <a href="dashboard.html" class="sidebar-brand">
+        RAAHI <span class="brand-dot"></span>
+      </a>
+      <div class="sidebar-close">✕</div>
+    </div>
+    <nav class="sidebar-nav">
+      <!-- (Shortened for brevity) -->
+      <a href="dashboard.html" class="sidebar-link">
+        <span class="sidebar-link-icon">📊</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="discover.html" class="sidebar-link active">
+        <span class="sidebar-link-icon">🔍</span>
+        <span>Discover</span>
+      </a>
+      <a href="trips.html" class="sidebar-link">
+        <span class="sidebar-link-icon">✈️</span>
+        <span>My Trips</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ═══════════════════════════════════════════
+       APP HEADER
+       ═══════════════════════════════════════════ -->
+  <header class="app-header">
+    <div class="app-header-left">
+      <div class="sidebar-toggle-btn">☰</div>
+    </div>
+    <div class="app-header-right">
+      <button class="btn btn-icon btn-ghost">🔔</button>
+      <a href="trips.html#create" class="btn btn-primary btn-sm hide-mobile">+ New Trip</a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN CONTENT
+       ═══════════════════════════════════════════ -->
+  <main class="main-content">
+    <div class="container container-full">
+      
+      <div class="discover-header animate-fade-in-up">
+        <h2>Where to next, Arjun?</h2>
+        <div class="search-bar">
+          <span class="search-bar-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search by destination (e.g. Manali, Goa)...">
+          <button class="btn btn-primary" onclick="simulateSearch()">Search</button>
+        </div>
+      </div>
+
+      <div class="filters-bar animate-fade-in-up delay-1">
+        <select class="filter-select">
+          <option value="">Budget: Any</option>
+          <option value="low">Under ₹5,000</option>
+          <option value="med">₹5,000 - ₹15,000</option>
+          <option value="high">Over ₹15,000</option>
+        </select>
+        
+        <select class="filter-select">
+          <option value="">Travel Style: Any</option>
+          <option value="adventure">Adventure</option>
+          <option value="relax">Relaxation</option>
+          <option value="culture">Culture</option>
+        </select>
+        
+        <select class="filter-select">
+          <option value="">Month: Any</option>
+          <option value="dec">December</option>
+          <option value="jan">January</option>
+          <option value="feb">February</option>
+        </select>
+
+        <button class="btn btn-ghost btn-sm ml-auto hide-mobile" id="resetFilters" style="color: var(--color-text-muted);">Reset Filters</button>
+      </div>
+
+      <!-- Results Info -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;" class="animate-fade-in-up delay-1">
+        <div style="font-size: 14px; color: var(--color-text-muted);" id="resultsCount">Showing 3 trips</div>
+        <div class="dropdown">
+          <button class="btn btn-ghost btn-sm dropdown-trigger" style="font-size: 13px;">Sort by: Recommended</button>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item">Recommended</a>
+            <a href="#" class="dropdown-item">Date (Nearest)</a>
+            <a href="#" class="dropdown-item">Budget (Low to High)</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid grid-4 animate-fade-in-up delay-2" id="searchResultsGrid">
+        
+        <!-- Result Card 1 -->
+        <a href="trip-detail.html" class="trip-card">
+          <div class="trip-card-image-placeholder" style="background: linear-gradient(135deg, #DBEAFE, #CCFBF1); color: #2563EB;">🏖️</div>
+          <div class="trip-card-body">
+            <h3 class="trip-card-destination">Goa New Year Bash</h3>
+            <div class="trip-card-dates">
+              <span>📅 Dec 28 - Jan 2</span>
+            </div>
+            <p class="trip-card-desc">Looking for chill people to share an Airbnb in North Goa. Mostly beach hopping, cafes, and a couple of parties.</p>
+            <div class="trip-card-meta">
+              <div class="trip-card-budget">₹15,000 <span>/person</span></div>
+              <div class="trip-card-travelers">
+                <div class="avatar-group">
+                  <div class="avatar avatar-sm" style="background: #E2E8F0; color: #475569;">+2</div>
+                </div>
+                <span>2 Spots left</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Result Card 2 -->
+        <a href="trip-detail.html" class="trip-card">
+          <div class="trip-card-image-placeholder" style="background: linear-gradient(135deg, #FFF7ED, #FFEDD5); color: #EA580C;">🏔️</div>
+          <div class="trip-card-badge badge badge-warning">Fast Filling</div>
+          <div class="trip-card-body">
+            <h3 class="trip-card-destination">Manali Winter Trek</h3>
+            <div class="trip-card-dates">
+              <span>📅 Feb 10 - Feb 15</span>
+            </div>
+            <p class="trip-card-desc">A moderately challenging trek in the snow. Need people who are physically fit and love the cold!</p>
+            <div class="trip-card-meta">
+              <div class="trip-card-budget">₹8,500 <span>/person</span></div>
+              <div class="trip-card-travelers">
+                <div class="avatar-group">
+                  <div class="avatar avatar-sm" style="background: #E2E8F0; color: #475569;">+5</div>
+                </div>
+                <span>1 Spot left</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Result Card 3 -->
+        <a href="trip-detail.html" class="trip-card">
+          <div class="trip-card-image-placeholder" style="background: linear-gradient(135deg, #F3E8FF, #E0E7FF); color: #4338CA;">🏰</div>
+          <div class="trip-card-body">
+            <h3 class="trip-card-destination">Jaipur Heritage Walk</h3>
+            <div class="trip-card-dates">
+              <span>📅 Jan 20 - Jan 23</span>
+            </div>
+            <p class="trip-card-desc">Exploring forts, palaces, and local Rajasthani food. Budget-friendly trip staying in a hostel.</p>
+            <div class="trip-card-meta">
+              <div class="trip-card-budget">₹4,000 <span>/person</span></div>
+              <div class="trip-card-travelers">
+                <div class="avatar-group">
+                  <div class="avatar avatar-sm" style="background: #DBEAFE; color: #2563EB;">R</div>
+                </div>
+                <span>3 Spots left</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/discover.js"></script>
+</body>
+</html>
