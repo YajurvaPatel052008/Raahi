@@ -314,7 +314,7 @@
           </div>
 
           <div class="inspiration-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=600&fit=crop" alt="Backpacking" loading="lazy" class="inspiration-card-image" onerror="this.style.display='none'">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=600&fit=crop" alt="Backpacking" loading="lazy" class="inspiration-card-image" onerror="this.style.display='none'">
             <div class="inspiration-card-overlay"></div>
             <div class="inspiration-card-content">
               <h3 class="inspiration-card-title">Backpacking</h3>
@@ -386,7 +386,7 @@
           </div>
 
           <div class="destination-card">
-            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop" alt="Manali mountains" loading="lazy" class="destination-image">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop" alt="Manali mountains" loading="lazy" class="destination-image" onerror="this.style.display='none'">
             <div class="destination-content">
               <h3 class="destination-name">Manali</h3>
               <p class="destination-budget">₹5,000 - ₹12,000</p>
@@ -403,7 +403,7 @@
           </div>
 
           <div class="destination-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop" alt="Kasol valley" loading="lazy" class="destination-image" onerror="this.style.display='none'">
+            <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=500&h=400&fit=crop" alt="Kasol valley" loading="lazy" class="destination-image" onerror="this.style.display='none'">
             <div class="destination-content">
               <h3 class="destination-name">Kasol</h3>
               <p class="destination-budget">₹4,000 - ₹10,000</p>
@@ -454,7 +454,7 @@
           </div>
 
           <div class="destination-card" style="background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);">
-            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop" alt="Rishikesh" loading="lazy" class="destination-image" onerror="this.style.display='none'">
+            <img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=500&h=400&fit=crop" alt="Rishikesh" loading="lazy" class="destination-image" onerror="this.style.display='none'">
             <div class="destination-content">
               <h3 class="destination-name">Rishikesh</h3>
               <p class="destination-budget">₹6,000 - ₹12,000</p>
@@ -472,8 +472,42 @@
         </div>
       </section>
 
+      <!-- YOUR TRAVEL DNA SECTION -->
+      <section class="travel-dna-section animate-fade-in-up delay-3">
+        <div class="section-header">
+          <h2 class="section-title">Your Travel DNA</h2>
+          <p class="section-subtitle">How the AI sees your travel personality</p>
+        </div>
+        <div id="travelDNAContainer" class="travel-dna-container">
+          <div class="travel-dna-tags">
+            <!-- Rendered by JavaScript -->
+            <span class="travel-dna-tag">Nature Explorer</span>
+            <span class="travel-dna-tag">Trekking Enthusiast</span>
+            <span class="travel-dna-tag">Budget Traveler</span>
+            <span class="travel-dna-tag">Photography Lover</span>
+          </div>
+          <div class="travel-dna-summary">
+            <p>You're an adventurous traveler who loves mountains, small groups, and capturing moments. Budget-conscious but never compromises on authentic experiences.</p>
+          </div>
+          <a href="profile.html" class="btn btn-outline btn-sm" style="margin-top: 16px;">
+            Update Travel Profile
+          </a>
+        </div>
+      </section>
+
+      <!-- TOP AI MATCHES SECTION -->
+      <section class="ai-matches-section animate-fade-in-up delay-4">
+        <div class="section-header">
+          <h2 class="section-title">Your Perfect Travel Buddies</h2>
+          <p class="section-subtitle">Matched based on your travel personality</p>
+        </div>
+        <div id="aiMatchesGrid" class="ai-matches-grid">
+          <!-- Rendered by JavaScript -->
+        </div>
+      </section>
+
       <!-- MAIN CONTENT GRID -->
-      <div class="grid grid-3 gap-6 animate-fade-in-up delay-3">
+      <div class="grid grid-3 gap-6 animate-fade-in-up delay-5">
 
         <div class="dashboard-left">
           <div class="card card-featured mb-6">
@@ -486,7 +520,7 @@
             </div>
 
             <div class="trip-preview">
-              <img src="https://images.unsplash.com/photo-1512453395892-4729f35ae76d?w=300&h=300&fit=crop" alt="Goa beach" loading="lazy" class="trip-preview-image">
+              <img src="https://images.unsplash.com/photo-1512453395892-4729f35ae76d?w=300&h=300&fit=crop" alt="Goa beach" loading="lazy" class="trip-preview-image" onerror="this.style.display='none'">
               <div class="trip-preview-content">
                 <h4 class="trip-preview-title">Goa New Year Bash</h4>
                 <div class="trip-preview-dates">
@@ -611,7 +645,17 @@
     </div>
   </main>
 
+  <!-- MATCH DETAILS MODAL -->
+  <div id="matchDetailsModal" class="modal" style="display: none;">
+    <div class="modal-overlay"></div>
+    <div class="modal-content" style="max-width: 500px;">
+      <!-- Content rendered by JavaScript -->
+    </div>
+  </div>
+
   <script src="js/app.js"></script>
+  <script src="js/ai-service.js"></script>
+  <script src="js/travel-buddy-matching.js"></script>
   <script src="js/dashboard.js"></script>
 
   <script>

@@ -235,9 +235,24 @@
               </div>
             </div>
           </div>
+
+          <div class="card">
+            <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 16px;">Tell Us About Your Travel Style</h3>
+            <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 12px;">Describe your ideal travel experience in your own words. This helps us match you with compatible travel buddies.</p>
+            <textarea id="travelBioInput"
+              placeholder="Example: I love trekking in mountains, exploring local food, traveling on a budget, and meeting other adventurers. I prefer small groups (2-4 people) and off-the-beaten-path destinations..."
+              style="width: 100%; min-height: 120px; padding: 12px; border: 1px solid var(--color-border); border-radius: 8px; font-family: inherit; font-size: 14px; resize: vertical; margin-bottom: 12px;">
+            </textarea>
+            <button class="btn btn-primary" onclick="updateTravelBio()" style="width: 100%;">
+              Generate Travel DNA
+            </button>
+            <div id="travelBioResult" style="margin-top: 12px;"></div>
+          </div>
         </div>
 
-      </div>
+        <!-- Empty right column placeholder to maintain spacing -->
+        <div class="flex-col gap-6">
+        </div>
     </div>
   </main>
 

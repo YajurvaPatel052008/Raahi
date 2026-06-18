@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Service Test — Raahi</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body style="padding: 20px; font-family: Inter, sans-serif;">
+
+  <h1>Raahi AI Service Test</h1>
+
+  <h2>Test 1: Travel DNA Retrieval</h2>
+  <button onclick="testTravelDNA()">Get Travel DNA</button>
+  <pre id="test1-result"></pre>
+
+  <h2>Test 2: AI Matches Retrieval</h2>
+  <button onclick="testAIMatches()">Get AI Matches</button>
+  <pre id="test2-result"></pre>
+
+  <h2>Test 3: Match Details</h2>
+  <button onclick="testMatchDetails()">Get Match Details</button>
+  <pre id="test3-result"></pre>
+
+  <h2>Test 4: Analyze Profile</h2>
+  <button onclick="testAnalyzeProfile()">Analyze Profile</button>
+  <pre id="test4-result"></pre>
+
+  <h2>Test 5: UI Rendering</h2>
+  <div id="test5-result" style="border: 1px solid #ccc; padding: 20px; margin: 10px 0; border-radius: 8px;"></div>
+
+  <h2>Test 6: Modal Functionality</h2>
+  <button onclick="testModal()">Test Match Modal</button>
+  <div id="matchDetailsModal" class="modal" style="display: none;">
+    <div class="modal-overlay"></div>
+    <div class="modal-content" style="max-width: 500px;"></div>
+  </div>
+
+  <script src="js/ai-service.js"></script>
+  <script src="js/travel-buddy-matching.js"></script>
+
+  <script>
+    async function testTravelDNA() {
+      const result = document.getElementById('test1-result');
+      try {
+        const dna = await window.aiService.getTravelDNA('user-123');
+        result.textContent = JSON.stringify(dna, null, 2);
+      } catch (error) {
+        result.textContent = 'Error: ' + error.message;
+      }
+    }
+
+    async function testAIMatches() {
+      const result = document.getElementById('test2-result');
+      try {
+        const matches = await window.aiService.getAIMatches('user-123', 3);
+        result.textContent = JSON.stringify(matches, null, 2);
+      } catch (error) {
+        result.textContent = 'Error: ' + error.message;
+      }
+    }
+
+    async function testMatchDetails() {
+      const result = document.getElementById('test3-result');
+      try {
+        const details = await window.aiService.getMatchDetails('user-001');
+        result.textContent = JSON.stringify(details, null, 2);
+      } catch (error) {
+        result.textContent = 'Error: ' + error.message;
+      }
+    }
+
+    async function testAnalyzeProfile() {
+      const result = document.getElementById('test4-result');
+      try {
+        const analysis = await window.aiService.analyzeProfile('I love trekking mountains with a tight budget', {});
+        result.textContent = JSON.stringify(analysis, null, 2);
+      } catch (error) {
+        result.textContent = 'Error: ' + error.message;
+      }
+    }
+
+    async function testModal() {
+      try {
+        const details = await window.aiService.getMatchDetails('user-001');
+        const modal = document.getElementById('matchDetailsModal');
+        const content = modal.querySelector('.modal-content');
+        if (content) {
+          content.innerHTML = window.travelBuddyMatching ?
+            'Check travel-buddy-matching.js for modal rendering' :
+            'travel-buddy-matching.js not loaded';
+          modal.style.display = 'flex';
+        }
+      } catch (error) {
+        console.error('Modal test error:', error);
+      }
+    }
+
+    async function renderUI() {
+      const result = document.getElementById('test5-result');
+      try {
+        const matches = await window.aiService.getAIMatches('user-123', 2);
+        let html = '<h3>Sample Match Cards:</h3>';
+        matches.forEach(match => {
+          html += `
+            <div class="ai-match-card" style="margin-bottom: 20px;">
+              <div class="match-card-header">
+                <img src="${match.avatar}" alt="${match.name}" class="match-card-avatar" style="width:48px;height:48px;border-radius:50%;object-fit:cover;">
+                <div class="match-card-info">
+                  <h4 class="match-card-name">${match.name}</h4>
+                  <p class="match-card-meta">${match.college} • ${match.year}</p>
+                  <div class="match-card-score" style="color: #22c55e;">
+                    ${match.matchScore}% Compatible
+                  </div>
+                </div>
+              </div>
+              <p class="explanation-text">"${match.explanation}"</p>
+              <div class="match-card-actions">
+                <button class="btn btn-primary btn-sm" style="flex: 1;">Say Hello</button>
+                <button class="btn btn-outline btn-sm" style="flex: 1;">Details</button>
+              </div>
+            </div>
+          `;
+        });
+        result.innerHTML = html;
+      } catch (error) {
+        result.innerHTML = 'Error: ' + error.message;
+      }
+    }
+
+    // Run all tests on load
+    document.addEventListener('DOMContentLoaded', async () => {
+      console.log('AI Service available:', window.aiService ? '✓' : '✗');
+      console.log('Travel Buddy Matching available:', window.travelBuddyMatching ? '✓' : '✗');
+      await renderUI();
+    });
+  </script>
+</body>
+</html>

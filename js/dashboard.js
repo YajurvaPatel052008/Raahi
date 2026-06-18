@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   await Promise.all([
     loadProfile(user),
     loadMyTrips(user.id),
-    loadStats(user.id)
+    loadStats(user.id),
+    window.travelBuddyMatching?.initializeTravelDNA?.(),
+    window.travelBuddyMatching?.initializeAIMatches?.()
   ]);
 });
 

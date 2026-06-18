@@ -87,11 +87,13 @@
       </div>
 
       <div class="tabs mb-6 animate-fade-in-up delay-1">
-        <div class="tab active">For Trips (2)</div>
-        <div class="tab">General Matches (1)</div>
+        <div class="tab active" data-tab="for-trips">For Trips (2)</div>
+        <div class="tab" data-tab="general-matches">General Matches (1)</div>
       </div>
 
-      <div class="grid grid-3 animate-fade-in-up delay-2">
+      <!-- FOR TRIPS TAB -->
+      <div id="for-trips" class="tab-content active animate-fade-in-up delay-2">
+        <div class="grid grid-3">
         
         <!-- Match Card 1 -->
         <div class="match-card">
@@ -110,9 +112,11 @@
           </div>
 
           <div class="match-users">
-            <div class="avatar avatar-xl" style="background: #DBEAFE; color: #2563EB;" title="You">A</div>
+            <div class="avatar avatar-xl" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: 3px solid white; box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);" title="You">A</div>
             <div class="match-vs">VS</div>
-            <div class="avatar avatar-xl" style="background: #E0E7FF; color: #4338CA;" title="Sahil Jain">S</div>
+            <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 3px solid #E0E7FF;">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Sahil Jain" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
           </div>
 
           <div class="match-score-circle" data-score="92">
@@ -120,7 +124,7 @@
               <circle class="match-score-track" cx="70" cy="70" r="64"></circle>
               <circle class="match-score-fill" cx="70" cy="70" r="64" stroke-dasharray="402" stroke-dashoffset="402"></circle>
             </svg>
-            <div class="match-score-value">0%</div>
+            <div class="match-score-value">92%</div>
           </div>
           <div class="match-score-label">Highly Compatible</div>
 
@@ -156,17 +160,19 @@
           <div style="font-size: 13px; font-weight: 500; color: var(--color-primary); margin-bottom: 16px;">
             For: Goa New Year Bash
           </div>
-
-          <div class="match-users">
-            <div class="avatar avatar-xl" style="background: #DBEAFE; color: #2563EB;" title="You">A</div>
+linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: 3px solid white; box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);" title="You">A</div>
             <div class="match-vs">VS</div>
-            <div class="avatar avatar-xl" style="background: #FFEDD5; color: #EA580C;" title="Karan Mehta">K</div>
+            <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 3px solid #FFEDD5;">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Karan Mehta" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
           </div>
 
           <div class="match-score-circle" data-score="78">
             <svg>
               <circle class="match-score-track" cx="70" cy="70" r="64"></circle>
               <circle class="match-score-fill" cx="70" cy="70" r="64" stroke-dasharray="402" stroke-dashoffset="402"></circle>
+            </svg>
+            <div class="match-score-value">78l" cx="70" cy="70" r="64" stroke-dasharray="402" stroke-dashoffset="402"></circle>
             </svg>
             <div class="match-score-value">0%</div>
           </div>
@@ -193,13 +199,139 @@
             <button class="btn btn-outline" style="flex: 1;">View Profile</button>
           </div>
         </div>
+      </div>
 
+      <!-- GENERAL MATCHES TAB -->
+      <div id="general-matches" class="tab-content" style="display: none;">
+        <div class="grid grid-3 animate-fade-in-up delay-2">
+          
+          <!-- Match Card 3: General Match -->
+          <div class="match-card">
+            <div style="font-size: 13px; font-weight: 500; color: var(--color-primary); margin-bottom: 16px;">
+              General Match
+            </div>
+
+            <div class="match-users">
+              <div class="avatar avatar-xl" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: 3px solid white; box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);" title="You">A</div>
+              <div class="match-vs">VS</div>
+              <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 3px solid #DDD5FE;">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Priya Patel" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+            </div>
+
+            <div class="match-score-circle" data-score="85">
+              <svg>
+                <circle class="match-score-track" cx="70" cy="70" r="64"></circle>
+                <circle class="match-score-fill" cx="70" cy="70" r="64" stroke-dasharray="402" stroke-dashoffset="402"></circle>
+              </svg>
+              <div class="match-score-value">85%</div>
+            </div>
+            <div class="match-score-label">Highly Compatible</div>
+
+            <div style="font-weight: 600; font-size: 16px; margin-bottom: 4px;">Priya Patel</div>
+            <div style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 20px;">NMIT · 2nd Year</div>
+
+            <div class="match-details">
+              <div class="match-detail-row">
+                <span class="match-detail-icon">🏔️</span>
+                <span class="match-detail-label">Travel Style</span>
+                <span class="match-detail-value">Adventure Seeker</span>
+              </div>
+              <div class="match-detail-row">
+                <span class="match-detail-icon">💰</span>
+                <span class="match-detail-label">Budget Range</span>
+                <span class="match-detail-value">Perfect Match</span>
+              </div>
+              <div class="match-detail-row">
+                <span class="match-detail-icon">👥</span>
+                <span class="match-detail-label">Shared Interests</span>
+                <span class="match-detail-value">Trekking, Photography</span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-top: 24px;">
+              <a href="chat.html" class="btn btn-primary" style="flex: 1;">Say Hello</a>
+              <button class="btn btn-outline" style="flex: 1;">View Profile</button>
+            </div>
+          </div>
+
+        </div>
       </div>
 
     </div>
   </main>
 
   <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/matches.js"></script>
+  <script>
+    // Tab switching functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabName = tab.getAttribute('data-tab');
+          
+          // Remove active class from all tabs and contents
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(content => {
+            content.style.display = 'none';
+            content.classList.remove('active');
+          });
+          
+          // Add active class to clicked tab
+          tab.classList.add('active');
+          
+          // Show corresponding content
+          const targetContent = document.getElementById(tabName);
+          if (targetContent) {
+            targetContent.style.display = 'block';
+            targetContent.classList.add('active');
+            // Re-animate scores when tab is shown
+            animateAllScores();
+          }
+        });
+      });
+
+      // Animate match scores on page load
+      animateAllScores();
+    });
+
+    function animateAllScores() {
+      const activeTab = document.querySelector('.tab-content.active');
+      const scoreElements = activeTab ? activeTab.querySelectorAll('.match-score-circle') : document.querySelectorAll('.match-score-circle');
+      
+      scoreElements.forEach(el => {
+        const targetScore = parseInt(el.getAttribute('data-score'), 10);
+        const valueEl = el.querySelector('.match-score-value');
+        const circle = el.querySelector('.match-score-fill');
+        
+        if (!valueEl || !circle) return;
+        
+        const circumference = 2 * Math.PI * 64;
+        circle.style.strokeDasharray = circumference;
+        circle.style.stroke = targetScore >= 80 ? '#22c55e' : targetScore >= 60 ? '#f59e0b' : '#94a3b8';
+        
+        let currentScore = 0;
+        const duration = 1500;
+        const startTime = performance.now();
+        
+        function update(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 4);
+          currentScore = Math.floor(eased * targetScore);
+          valueEl.textContent = `${currentScore}%`;
+          circle.style.strokeDashoffset = circumference - (currentScore / 100) * circumference;
+          if (progress < 1) requestAnimationFrame(update);
+        }
+        
+        requestAnimationFrame(update);
+      });
+    }
+  ript>
   <script src="js/dashboard.js"></script>
   <script src="js/matches.js"></script>
 </body>

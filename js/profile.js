@@ -240,6 +240,51 @@ function initAvatarUpload() {
   });
 }
 
+// Update Travel Bio and Generate Travel DNA
+window.updateTravelBio = async function() {
+  const textarea = document.getElementById('travelBioInput');
+  const resultDiv = document.getElementById('travelBioResult');
+
+  if (!textarea || !textarea.value.trim()) {
+    if (resultDiv) resultDiv.innerHTML = '<p style="color: var(--color-error); font-size: 13px;">Please write something about your travel style first!</p>';
+    return;
+  }
+
+  if (resultDiv) {
+    resultDiv.innerHTML = '<p style="color: var(--color-text-muted); font-size: 13px;">⏳ Analyzing your travel profile...</p>';
+  }
+
+  try {
+    // Phase 1 (Mock): Just use the AI service mock
+    const profile = await window.aiService.analyzeProfile(textarea.value, {
+      college: 'AITR',
+      year: '3rd Year'
+    });
+
+    // Display results
+    if (resultDiv) {
+      resultDiv.innerHTML = `
+        <div style="background: var(--color-bg-secondary); padding: 12px; border-radius: 8px; margin-top: 12px;">
+          <p style="font-size: 13px; font-weight: 600; color: var(--color-primary); margin-bottom: 8px;">✓ Travel DNA Generated!</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            ${profile.tags.map(tag => `<span class="travel-dna-tag" style="padding: 4px 8px; font-size: 12px;">${tag}</span>`).join('')}
+          </div>
+          <p style="font-size: 13px; color: var(--color-text); margin-top: 12px; line-height: 1.5;">${profile.summary}</p>
+        </div>
+      `;
+    }
+
+    // Log for Phase 2 (when Gemini is integrated)
+    console.log('[Profile] Travel DNA generated:', profile);
+    if (window.showToast) window.showToast('Success!', 'Your travel profile has been updated.');
+  } catch (error) {
+    console.error('Error analyzing travel profile:', error);
+    if (resultDiv) {
+      resultDiv.innerHTML = '<p style="color: var(--color-error); font-size: 13px;">Error analyzing profile. Please try again.</p>';
+    }
+  }
+};
+
 // Logout
 window.handleLogout = async function() {
   await window.raahi.signOut();
