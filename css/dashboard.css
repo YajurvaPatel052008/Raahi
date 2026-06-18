@@ -854,6 +854,7 @@
   object-fit: cover;
   object-position: center;
   transition: transform var(--transition-base);
+  display: block;
 }
 
 .destination-card:hover .destination-image {
