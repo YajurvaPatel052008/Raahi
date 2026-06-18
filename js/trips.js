@@ -114,13 +114,20 @@ async function handleCreateTrip(e) {
   const btn = document.getElementById('publishBtn');
   if (btn) { btn.innerHTML = '<div class="spinner spinner-sm" style="border-top-color:white;display:inline-block;"></div>'; btn.disabled = true; }
 
-  const destination = document.getElementById('tripDestination')?.value?.trim();
-  const startDate = document.getElementById('tripStartDate')?.value;
-  const endDate = document.getElementById('tripEndDate')?.value;
-  const budget = parseFloat(document.getElementById('tripBudget')?.value);
-  const maxMembers = parseInt(document.getElementById('tripMaxMembers')?.value || '4');
-  const travelType = document.getElementById('tripType')?.value;
-  const description = document.getElementById('tripDescription')?.value?.trim();
+  const destination = document.getElementById('destination')?.value?.trim();
+  const startDate = document.getElementById('startDate')?.value;
+  const endDate = document.getElementById('endDate')?.value;
+  const budget = parseFloat(document.getElementById('budget')?.value);
+  const maxMembers = parseInt(document.getElementById('groupSize')?.value || '4');
+  const travelType = document.getElementById('travelType')?.value;
+  const title = document.getElementById('tripTitle')?.value?.trim();
+  const description = document.getElementById('description')?.value?.trim();
+
+  if (!destination || !startDate || !endDate || !budget || !title) {
+    if (window.showToast) window.showToast('Error', 'Please fill in all required fields', 'error');
+    if (btn) { btn.innerHTML = 'Publish Trip'; btn.disabled = false; }
+    return;
+  }
 
   const { data, error } = await window.raahi.createTrip({
     creator_id: currentUser.id,
@@ -130,6 +137,7 @@ async function handleCreateTrip(e) {
     budget,
     max_members: maxMembers,
     travel_type: travelType,
+    title,
     description,
     status: 'open',
     current_members: 1
@@ -143,7 +151,7 @@ async function handleCreateTrip(e) {
   }
 
   window.closeCreateTripModal();
-  if (window.showToast) window.showToast('Trip Published!', `${destination} is now live!`);
+  if (window.showToast) window.showToast('Trip Published!', `${title} is now live!`);
   e.target.reset();
   await loadTrips('my');
 }

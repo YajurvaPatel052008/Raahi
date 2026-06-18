@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   currentUser = await window.raahi.requireAuth();
   if (!currentUser) return;
 
+  const { data: profile } = await window.raahi.getProfile(currentUser.id);
+  if (profile) {
+    const firstName = profile.full_name?.split(' ')[0] || 'there';
+    document.getElementById('userGreeting').textContent = firstName;
+  }
+
   await loadAllTrips();
   initSearchAndFilters();
 });
