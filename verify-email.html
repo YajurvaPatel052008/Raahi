@@ -32,10 +32,10 @@
           <p>We've sent a 4-digit code to your email.<br>Please enter it below to verify your student status.</p>
         </div>
 
-        <form class="auth-form" id="verifyForm" onsubmit="event.preventDefault(); simulateAuth('onboarding.html');">
+        <form class="auth-form" id="verifyForm">
           <p class="text-center" style="color: var(--color-text-muted); margin-bottom: 24px;">A verification link has been sent to your email. Please click the link to verify your account.</p>
 
-          <button type="submit" class="btn btn-primary btn-block btn-lg mt-6" id="submitBtn">Continue to Onboarding</button>
+          <button type="button" class="btn btn-primary btn-block btn-lg mt-6" id="submitBtn" onclick="window.location.href='onboarding.html'">Continue to Onboarding</button>
         </form>
 
         <div class="resend-timer">

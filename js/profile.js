@@ -8,16 +8,72 @@ document.addEventListener('DOMContentLoaded', async () => {
   currentUser = await window.raahi.requireAuth();
   if (!currentUser) return;
 
+  initSidebar();
   await loadProfileData();
   initProfileForms();
   initAvatarUpload();
 });
 
+function initSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.querySelector('.sidebar-overlay');
+  const toggleBtn = document.querySelector('.sidebar-toggle-btn');
+  const closeBtn = document.querySelector('.sidebar-close');
+
+  if (!sidebar) return;
+
+  function openSidebar() {
+    sidebar.classList.add('active');
+    if (overlay) overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSidebar() {
+    sidebar.classList.remove('active');
+    if (overlay) overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (toggleBtn) toggleBtn.addEventListener('click', openSidebar);
+  if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+  if (overlay) overlay.addEventListener('click', closeSidebar);
+}
+
 async function loadProfileData() {
   const { data: profile } = await window.raahi.getProfile(currentUser.id);
   if (!profile) return;
 
-  // Fill basic info fields
+  // Update profile header display
+  const nameEl = document.getElementById('profileDisplayName');
+  const collegeEl = document.getElementById('profileDisplayCollege');
+  const bioEl = document.getElementById('profileDisplayBio');
+  const avatarEl = document.getElementById('profileDisplayAvatar');
+  const verifiedEl = document.getElementById('profileVerifiedBadge');
+
+  if (nameEl) nameEl.textContent = profile.full_name || 'User';
+  if (collegeEl) collegeEl.innerHTML = `🎓 ${profile.college || 'Not specified'} · ${profile.year || 'Year'} · ${profile.department || 'Department'}`;
+  if (bioEl) bioEl.textContent = profile.bio || 'No bio added';
+
+  if (avatarEl) {
+    const initials = (profile.full_name || 'U').split(' ').map(n => n[0]).join('').toUpperCase();
+    if (profile.avatar_url) {
+      avatarEl.style.backgroundImage = `url(${profile.avatar_url})`;
+      avatarEl.style.backgroundSize = 'cover';
+      avatarEl.style.backgroundPosition = 'center';
+      avatarEl.textContent = '';
+    } else {
+      avatarEl.textContent = initials;
+    }
+  }
+
+  if (verifiedEl) {
+    verifiedEl.textContent = profile.is_verified ? '✓' : '⚠';
+  }
+
+  // Update page title
+  document.title = `${profile.full_name || 'Profile'} — Raahi`;
+
+  // Fill basic info fields (for forms)
   const fields = {
     'profileName': profile.full_name,
     'profileBio': profile.bio,
@@ -32,25 +88,6 @@ async function loadProfileData() {
     const el = document.getElementById(id);
     if (el && val) el.value = val;
   });
-
-  // Avatar
-  const avatarEl = document.getElementById('profileAvatar') || document.querySelector('.profile-avatar-img, .avatar-lg');
-  if (avatarEl) {
-    if (profile.avatar_url) {
-      if (avatarEl.tagName === 'IMG') {
-        avatarEl.src = profile.avatar_url;
-      } else {
-        avatarEl.style.backgroundImage = `url(${profile.avatar_url})`;
-        avatarEl.style.backgroundSize = 'cover';
-        avatarEl.style.backgroundPosition = 'center';
-        avatarEl.innerHTML = '';
-      }
-    } else {
-      if (avatarEl.tagName !== 'IMG') {
-        avatarEl.textContent = profile.full_name?.[0]?.toUpperCase() || 'U';
-      }
-    }
-  }
 
   // Trust Score
   const trustEl = document.getElementById('profileTrustScore');

@@ -85,7 +85,7 @@
       </div>
 
       <div class="grid grid-3 gap-6 animate-fade-in-up delay-1">
-        
+
         <!-- Left Sidebar for Settings Tabs -->
         <div style="grid-column: span 1;" class="hide-mobile">
           <div class="card p-2">
@@ -94,6 +94,7 @@
               <a href="#security" class="btn btn-ghost" style="justify-content: flex-start; text-align: left;">🔒 Security</a>
               <a href="#notifications" class="btn btn-ghost" style="justify-content: flex-start; text-align: left;">🔔 Notifications</a>
               <a href="#verification" class="btn btn-ghost" style="justify-content: flex-start; text-align: left;">🛡️ Verifications</a>
+              <button type="button" class="btn btn-ghost" style="justify-content: flex-start; text-align: left; color: var(--color-error);" onclick="window.handleLogout();">🚪 Log Out</button>
             </nav>
           </div>
         </div>
@@ -113,26 +114,26 @@
               </div>
             </div>
 
-            <form onsubmit="event.preventDefault(); window.showToast('Settings Saved', 'Your profile details have been updated.');">
+            <form id="accountDetailsForm" onsubmit="event.preventDefault(); handleSaveAccountDetails();">
               <div class="form-grid form-grid-2">
                 <div class="input-group">
                   <label class="input-label">First Name</label>
-                  <input type="text" class="input" value="Arjun">
+                  <input type="text" class="input" id="firstNameInput" value="Arjun">
                 </div>
                 <div class="input-group">
                   <label class="input-label">Last Name</label>
-                  <input type="text" class="input" value="Sharma">
+                  <input type="text" class="input" id="lastNameInput" value="Sharma">
                 </div>
               </div>
 
               <div class="input-group">
                 <label class="input-label">Bio</label>
-                <textarea class="input" rows="3">Adventure enthusiast and photography lover. Always looking for the next mountain to climb. Let's explore together!</textarea>
+                <textarea class="input" id="bioInput" rows="3">Adventure enthusiast and photography lover. Always looking for the next mountain to climb. Let's explore together!</textarea>
               </div>
 
               <div class="input-group">
                 <label class="input-label">Phone Number</label>
-                <input type="tel" class="input" value="+91 98765 43210">
+                <input type="tel" class="input" id="phoneInput" value="+91 98765 43210">
               </div>
 
               <button type="submit" class="btn btn-primary mt-2">Save Changes</button>
@@ -192,6 +193,7 @@
 
   <script src="js/app.js"></script>
   <script src="js/dashboard.js"></script>
+  <script src="js/settings.js"></script>
   
   <style>
     @media (max-width: 768px) {
