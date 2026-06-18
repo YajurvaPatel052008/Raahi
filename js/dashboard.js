@@ -218,6 +218,13 @@ function initializeInspiration() {
       card.style.transform = 'translateY(0)';
     });
 
+    const img = card.querySelector('.inspiration-card-image');
+    if (img) {
+      img.addEventListener('error', () => {
+        card.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+      });
+    }
+
     const destinationLinks = card.querySelectorAll('a');
     destinationLinks.forEach(link => {
       if (!link.href || link.href === '#') {
@@ -235,7 +242,26 @@ function initializeInspiration() {
     card.addEventListener('mouseleave', () => {
       card.style.transform = 'translateY(0)';
     });
+
+    const img = card.querySelector('.destination-image');
+    if (img) {
+      img.addEventListener('error', () => {
+        img.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        img.style.backgroundSize = 'cover';
+      });
+
+      img.addEventListener('load', () => {
+        img.style.animation = 'fadeInImage 0.6s ease-out';
+      });
+    }
   });
+
+  const tripPreviewImg = document.querySelector('.trip-preview-image');
+  if (tripPreviewImg) {
+    tripPreviewImg.addEventListener('error', () => {
+      tripPreviewImg.style.background = 'linear-gradient(135deg, #2563EB, #06B6D4)';
+    });
+  }
 }
 
 window.handleLogout = async function() {

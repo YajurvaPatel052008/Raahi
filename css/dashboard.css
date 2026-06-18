@@ -784,16 +784,22 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
+  object-position: center;
   transition: transform var(--transition-base);
+}
+
+.inspiration-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.7) 100%);
+  z-index: 1;
 }
 
 .inspiration-card-content {
   position: relative;
   z-index: 2;
   padding: var(--space-5);
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%);
   width: 100%;
   color: white;
 }
@@ -845,8 +851,8 @@
 .destination-image {
   width: 100%;
   height: 160px;
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
+  object-position: center;
   transition: transform var(--transition-base);
 }
 
@@ -978,12 +984,9 @@
   width: 120px;
   height: 120px;
   border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 48px;
   flex-shrink: 0;
-  background: linear-gradient(135deg, #2563EB, #06B6D4);
+  object-fit: cover;
+  object-position: center;
   transition: transform var(--transition-base);
 }
 
@@ -1339,4 +1342,32 @@
 
 .delay-3 {
   animation-delay: 0.3s;
+}
+
+/* ── IMAGE OPTIMIZATION ── */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+img[loading="lazy"] {
+  animation: fadeInImage 0.6s ease-out;
+}
+
+@keyframes fadeInImage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.trip-preview {
+  animation: slideInUp 0.6s ease-out;
+}
+
+.destination-card {
+  animation: fadeInUp 0.6s ease-out;
 }
