@@ -1,109 +1,104 @@
-# RAAHI Entity-Relationship Diagram
+# RAAHI Database Entity-Relationship Diagram
 
-This document contains the Entity-Relationship (ER) diagram for the RAAHI database schema.
+Below is the Mermaid representation of the RAAHI production database schema.
 
 ```mermaid
 erDiagram
-    profiles ||--o{ trips : "hosts"
-    profiles ||--o{ trip_members : "joins"
-    profiles ||--o{ reviews : "reviewer/reviewee"
-    profiles ||--o{ messages : "sender/receiver"
-    profiles ||--o{ notifications : "receives"
-    profiles ||--o{ sos_alerts : "triggers"
-
-    trips ||--o{ trip_members : "has"
-    trips ||--o{ reviews : "rated_for"
-    trips ||--o{ messages : "contains"
-    trips ||--o{ sos_alerts : "linked_to"
+    auth_users ||--o| profiles : "1:1 Auth"
+    profiles ||--o| travel_preferences : "1:1"
+    profiles ||--o{ trips : "Creates"
+    profiles ||--o{ trip_members : "Joins"
+    trips ||--o{ trip_members : "Contains"
+    profiles ||--o{ messages : "Sends"
+    profiles ||--o{ messages : "Receives"
+    profiles ||--o{ matches : "User 1"
+    profiles ||--o{ matches : "User 2"
+    profiles ||--o{ reviews : "Writes"
+    profiles ||--o{ reviews : "Receives"
+    trips ||--o{ reviews : "Has"
+    profiles ||--o{ trust_scores : "History"
+    profiles ||--o{ emergency_contacts : "Has"
+    profiles ||--o{ notifications : "Receives"
+    profiles ||--o{ call_history : "Calls"
+    profiles ||--o{ call_history : "Receives Call"
+    profiles ||--o{ reports : "Files"
+    profiles ||--o{ reports : "Reported"
+    profiles ||--o{ admin_logs : "Performs"
 
     profiles {
-        uuid id PK
-        text email UK
-        text full_name
-        text bio
-        text college
-        text department
-        text year
-        text city
-        text gender
-        text_array interests
-        text travel_style
-        text avatar_url
-        user_role role
-        integer trust_score
-        trust_level trust_level
-        boolean is_verified
-        timestamptz created_at
-        timestamptz updated_at
+        UUID id PK
+        UUID user_id UK
+        TEXT full_name
+        TEXT email
+        TEXT college
+        TEXT role
+        INTEGER trust_score
+        TEXT trust_level
+        BOOLEAN is_verified
+    }
+
+    travel_preferences {
+        UUID id PK
+        UUID user_id FK
+        TEXT budget_range
+        TEXT travel_style
+        TEXT[] interests
+        TEXT[] preferred_destinations
     }
 
     trips {
-        uuid id PK
-        uuid host_id FK
-        text destination
-        date start_date
-        date end_date
-        numeric budget
-        text travel_type
-        text description
-        integer max_members
+        UUID id PK
+        UUID creator_id FK
+        TEXT destination
+        DATE start_date
+        DATE end_date
+        NUMERIC budget
+        TEXT travel_type
+        INTEGER max_members
         trip_status status
-        timestamptz created_at
-        timestamptz updated_at
+        tsvector fts
     }
 
     trip_members {
-        uuid id PK
-        uuid trip_id FK
-        uuid user_id FK
-        member_status status
-        timestamptz created_at
+        UUID id PK
+        UUID trip_id FK
+        UUID user_id FK
+        member_status join_status
+        TIMESTAMPTZ joined_at
     }
 
-    reviews {
-        uuid id PK
-        uuid trip_id FK
-        uuid reviewer_id FK
-        uuid reviewee_id FK
-        integer safety_rating
-        integer communication_rating
-        integer punctuality_rating
-        integer overall_experience
-        text feedback
-        timestamptz created_at
+    matches {
+        UUID id PK
+        UUID user_1 FK
+        UUID user_2 FK
+        INTEGER compatibility_score
+        TEXT status
     }
 
     messages {
-        uuid id PK
-        uuid trip_id FK
-        uuid sender_id FK
-        uuid receiver_id FK
-        text content
-        text image_url
-        text voice_note_url
-        boolean is_read
-        timestamptz created_at
+        UUID id PK
+        UUID sender_id FK
+        UUID receiver_id FK
+        TEXT message
+        message_type message_type
+        BOOLEAN is_read
+        TIMESTAMPTZ created_at
     }
 
-    notifications {
-        uuid id PK
-        uuid user_id FK
-        notification_type type
-        text title
-        text body
-        text link
-        boolean is_read
-        timestamptz created_at
+    reviews {
+        UUID id PK
+        UUID trip_id FK
+        UUID reviewer_id FK
+        UUID reviewed_user_id FK
+        INTEGER safety_rating
+        INTEGER overall_rating
     }
 
-    sos_alerts {
-        uuid id PK
-        uuid user_id FK
-        uuid trip_id FK
-        numeric location_lat
-        numeric location_lng
-        text status
-        timestamptz resolved_at
-        timestamptz created_at
+    trust_scores {
+        UUID id PK
+        UUID user_id FK
+        INTEGER score
+        TEXT level
+        TEXT reason
     }
 ```

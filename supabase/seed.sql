@@ -3,6 +3,11 @@
 -- Purpose: Populate local/development environment with mock data
 -- ========================================================================================
 
+-- Create mock users in auth schema (Note: in local dev only or using Supabase Admin API)
+-- Since we can't easily insert into auth.users without encrypted passwords in pure SQL, 
+-- we will mock the public profiles directly. In reality, auth.users must exist first.
+-- To make this `seed.sql` work in a real Supabase env, we disable triggers temporarily.
+
 SET session_replication_role = 'replica';
 
 -- Insert Profiles
