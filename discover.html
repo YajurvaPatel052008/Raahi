@@ -15,174 +15,361 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/utilities.css">
   <link rel="stylesheet" href="css/dashboard.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <link rel="stylesheet" href="css/discover.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="js/supabase-client.js"></script>
 </head>
 <body>
 
-  <!-- Sidebar Overlay (Mobile) -->
   <div class="sidebar-overlay"></div>
 
-  <!-- ═══════════════════════════════════════════
-       SIDEBAR
-       ═══════════════════════════════════════════ -->
-  <aside class="sidebar">
+  <aside class="sidebar sidebar-modern">
     <div class="sidebar-header">
       <a href="dashboard.html" class="sidebar-brand">
-        RAAHI <span class="brand-dot"></span>
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+          <path d="M9 9h6M9 13h6M9 17h3"/>
+        </svg>
+        <span class="brand-text">RAAHI</span>
       </a>
-      <div class="sidebar-close">✕</div>
+      <div class="sidebar-close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </div>
     </div>
+
     <nav class="sidebar-nav">
-      <!-- (Shortened for brevity) -->
-      <a href="dashboard.html" class="sidebar-link">
-        <span class="sidebar-link-icon">📊</span>
-        <span>Dashboard</span>
-      </a>
-      <a href="discover.html" class="sidebar-link active">
-        <span class="sidebar-link-icon">🔍</span>
-        <span>Discover</span>
-      </a>
-      <a href="trips.html" class="sidebar-link">
-        <span class="sidebar-link-icon">✈️</span>
-        <span>My Trips</span>
-      </a>
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">MAIN</div>
+        <a href="dashboard.html" class="sidebar-link">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="discover.html" class="sidebar-link active">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
+          </svg>
+          <span>Discover</span>
+        </a>
+        <a href="matches.html" class="sidebar-link">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <span>Matches</span>
+          <span class="sidebar-link-badge">3</span>
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">MY TRAVEL</div>
+        <a href="trips.html" class="sidebar-link">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 3h12a1 1 0 0 1 1 1v3H5V4a1 1 0 0 1 1-1z"/><rect x="4" y="7" width="16" height="12" rx="1"/><path d="M10 12v4M14 12v4"/>
+          </svg>
+          <span>My Trips</span>
+        </a>
+        <a href="chat.html" class="sidebar-link">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>Messages</span>
+          <span class="sidebar-link-badge">2</span>
+        </a>
+        <a href="reviews.html" class="sidebar-link">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 10.26 24 10.26 17.55 16.74 19.64 25 12 19.52 4.36 25 6.45 16.74 0 10.26 8.91 10.26 12 2"/>
+          </svg>
+          <span>Reviews</span>
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">ACCOUNT</div>
+        <a href="profile.html" class="sidebar-link">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span>Profile</span>
+        </a>
+        <a href="settings.html" class="sidebar-link">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m3.08 3.08l4.24 4.24M1 12h6m6 0h6m-17.78 7.78l4.24-4.24m3.08-3.08l4.24-4.24"/>
+          </svg>
+          <span>Settings</span>
+        </a>
+      </div>
     </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm" id="sidebarAvatar" style="background: linear-gradient(135deg, #2563EB, #06B6D4); color: white;">Y</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebarUserName">Loading...</div>
+          <div class="sidebar-user-email" id="sidebarUserEmail">student@college.ac.in</div>
+        </div>
+        <button class="sidebar-user-menu" onclick="toggleUserMenu(event)">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/>
+          </svg>
+        </button>
+
+        <div class="sidebar-user-dropdown">
+          <a href="profile.html" class="dropdown-item">View Profile</a>
+          <a href="settings.html" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <button onclick="window.raahi.signOut()" class="dropdown-item danger">Log out</button>
+        </div>
+      </div>
+    </div>
   </aside>
 
-  <!-- ═══════════════════════════════════════════
-       APP HEADER
-       ═══════════════════════════════════════════ -->
-  <header class="app-header">
-    <div class="app-header-left">
-      <div class="sidebar-toggle-btn">☰</div>
-    </div>
-    <div class="app-header-right">
-      <button class="btn btn-icon btn-ghost">🔔</button>
-      <a href="trips.html#create" class="btn btn-primary btn-sm hide-mobile">+ New Trip</a>
+  <header class="app-header-modern sticky">
+    <div class="header-content">
+      <div class="header-left">
+        <button class="sidebar-toggle-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+        <div class="header-search-bar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Search trips, matches..." class="header-search-input">
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="header-notification-icon">
+          <button class="notification-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            <span class="notification-badge">2</span>
+          </button>
+          <div class="notification-dropdown">
+            <div class="notification-header">Notifications</div>
+            <div class="notification-list">
+              <a href="#" class="notification-item unread">
+                <div class="notification-avatar" style="background: #06B6D4;">N</div>
+                <div class="notification-content">
+                  <div class="notification-title"><strong>Neha Gupta</strong> requested to join your trip</div>
+                  <div class="notification-time">2 hours ago</div>
+                </div>
+              </a>
+            </div>
+            <a href="#" class="notification-footer">View all notifications</a>
+          </div>
+        </div>
+
+        <a href="trips.html" class="btn btn-primary btn-sm hide-mobile">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="16" height="16">
+            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+            <path d="M12 8v8M8 12h8" stroke="white" fill="none" stroke-width="2"/>
+          </svg>
+          New Trip
+        </a>
+      </div>
     </div>
   </header>
 
-  <!-- ═══════════════════════════════════════════
-       MAIN CONTENT
-       ═══════════════════════════════════════════ -->
   <main class="main-content">
+    <!-- HERO SECTION -->
+    <div class="discover-hero">
+      <div class="hero-background"></div>
+      <div class="hero-gradient"></div>
+      <div class="hero-content discover-hero-content">
+        <h1 class="discover-hero-title animate-fade-in-up">
+          Where to next, <span id="userGreeting" class="gradient-text">Traveller</span>?
+        </h1>
+        <p class="discover-hero-subtitle animate-fade-in-up delay-1">
+          Discover amazing trips, find travel buddies, and start your adventure
+        </p>
+      </div>
+    </div>
+
     <div class="container container-full">
-      
-      <div class="discover-header animate-fade-in-up">
-        <h2>Where to next, <span id="userGreeting">there</span>?</h2>
-        <div class="search-bar">
-          <span class="search-bar-icon">🔍</span>
-          <input type="text" id="searchInput" placeholder="Search by destination (e.g. Manali, Goa)...">
-          <button class="btn btn-primary" onclick="simulateSearch()">Search</button>
+
+      <!-- SEARCH & FILTERS SECTION -->
+      <section class="discover-search-section animate-fade-in-up delay-2">
+        <div class="search-bar-container">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" id="discoverSearch" placeholder="Search by destination (e.g. Goa, Manali, Kasol)..." class="search-input-discover">
+          <button class="btn btn-primary btn-sm" onclick="performSearch()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            Search
+          </button>
+        </div>
+
+        <div class="filters-container">
+          <div class="filter-group">
+            <label class="filter-label">Budget</label>
+            <select id="budgetFilter" class="filter-input">
+              <option value="">Any</option>
+              <option value="low">Under ₹5,000</option>
+              <option value="med">₹5,000 - ₹15,000</option>
+              <option value="high">Over ₹15,000</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label">Travel Style</label>
+            <select id="styleFilter" class="filter-input">
+              <option value="">Any</option>
+              <option value="adventure">Adventure</option>
+              <option value="relax">Relaxation</option>
+              <option value="culture">Culture</option>
+              <option value="backpack">Backpacking</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label">Month</label>
+            <select id="monthFilter" class="filter-input">
+              <option value="">Any</option>
+              <option value="dec">December</option>
+              <option value="jan">January</option>
+              <option value="feb">February</option>
+              <option value="mar">March</option>
+            </select>
+          </div>
+
+          <button class="btn btn-outline btn-sm" id="resetFilters" onclick="resetAllFilters()">Reset</button>
+        </div>
+      </section>
+
+      <!-- RESULTS HEADER -->
+      <div class="results-header animate-fade-in-up delay-2">
+        <div class="results-info">
+          <span class="results-count" id="resultsCount">Showing 3 trips</span>
+        </div>
+        <div class="sort-dropdown">
+          <button class="btn btn-ghost btn-sm dropdown-trigger">
+            Sort by: <strong>Recommended</strong>
+          </button>
         </div>
       </div>
 
-      <div class="filters-bar animate-fade-in-up delay-1">
-        <select class="filter-select">
-          <option value="">Budget: Any</option>
-          <option value="low">Under ₹5,000</option>
-          <option value="med">₹5,000 - ₹15,000</option>
-          <option value="high">Over ₹15,000</option>
-        </select>
-        
-        <select class="filter-select">
-          <option value="">Travel Style: Any</option>
-          <option value="adventure">Adventure</option>
-          <option value="relax">Relaxation</option>
-          <option value="culture">Culture</option>
-        </select>
-        
-        <select class="filter-select">
-          <option value="">Month: Any</option>
-          <option value="dec">December</option>
-          <option value="jan">January</option>
-          <option value="feb">February</option>
-        </select>
+      <!-- TRIPS GRID -->
+      <div class="trips-grid animate-fade-in-up delay-3" id="searchResultsGrid">
 
-        <button class="btn btn-ghost btn-sm ml-auto hide-mobile" id="resetFilters" style="color: var(--color-text-muted);">Reset Filters</button>
+        <!-- Trip Card 1: Goa -->
+        <a href="trip-detail.html" class="trip-card-modern">
+          <div class="trip-card-image-container">
+            <img src="https://images.unsplash.com/photo-1512453395892-4729f35ae76d?w=400&h=300&fit=crop" alt="Goa beach" loading="lazy" class="trip-card-image">
+            <span class="trip-card-badge">Featured</span>
+          </div>
+          <div class="trip-card-modern-content">
+            <div class="trip-card-header-row">
+              <h3 class="trip-card-title">Goa New Year Bash</h3>
+              <span class="trip-card-price">₹15,000</span>
+            </div>
+            <p class="trip-card-subtitle">Beach & Party • 6 Days</p>
+            <p class="trip-card-description">Looking for chill people to share an Airbnb in North Goa. Mostly beach hopping, cafes, and parties.</p>
+            <div class="trip-card-footer">
+              <div class="trip-card-dates">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/>
+                </svg>
+                Dec 28 - Jan 2
+              </div>
+              <div class="trip-card-spots">2 spots left</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Trip Card 2: Manali -->
+        <a href="trip-detail.html" class="trip-card-modern">
+          <div class="trip-card-image-container">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" alt="Manali mountains" loading="lazy" class="trip-card-image">
+            <span class="trip-card-badge badge-warning">Fast Filling</span>
+          </div>
+          <div class="trip-card-modern-content">
+            <div class="trip-card-header-row">
+              <h3 class="trip-card-title">Manali Winter Trek</h3>
+              <span class="trip-card-price">₹8,500</span>
+            </div>
+            <p class="trip-card-subtitle">Adventure & Snow • 6 Days</p>
+            <p class="trip-card-description">Moderately challenging trek in fresh snow. Need physically fit people who love cold weather adventures.</p>
+            <div class="trip-card-footer">
+              <div class="trip-card-dates">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/>
+                </svg>
+                Feb 10 - Feb 15
+              </div>
+              <div class="trip-card-spots">1 spot left</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Trip Card 3: Jaipur -->
+        <a href="trip-detail.html" class="trip-card-modern">
+          <div class="trip-card-image-container">
+            <img src="https://images.unsplash.com/photo-1487546511543-c1ee14ce1f44?w=400&h=300&fit=crop" alt="Jaipur heritage" loading="lazy" class="trip-card-image">
+          </div>
+          <div class="trip-card-modern-content">
+            <div class="trip-card-header-row">
+              <h3 class="trip-card-title">Jaipur Heritage Walk</h3>
+              <span class="trip-card-price">₹4,000</span>
+            </div>
+            <p class="trip-card-subtitle">Culture & History • 4 Days</p>
+            <p class="trip-card-description">Exploring forts, palaces, and local Rajasthani food. Budget-friendly hostel stay with guided tours included.</p>
+            <div class="trip-card-footer">
+              <div class="trip-card-dates">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/>
+                </svg>
+                Jan 20 - Jan 23
+              </div>
+              <div class="trip-card-spots">3 spots left</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Trip Card 4: Kasol -->
+        <a href="trip-detail.html" class="trip-card-modern">
+          <div class="trip-card-image-container">
+            <img src="https://images.unsplash.com/photo-1533350335684-a048cffe9e98?w=400&h=300&fit=crop" alt="Kasol valley" loading="lazy" class="trip-card-image">
+          </div>
+          <div class="trip-card-modern-content">
+            <div class="trip-card-header-row">
+              <h3 class="trip-card-title">Kasol Backpacking</h3>
+              <span class="trip-card-price">₹5,000</span>
+            </div>
+            <p class="trip-card-subtitle">Budget Travel • 5 Days</p>
+            <p class="trip-card-description">Hidden gem in Himachal Pradesh. Budget stays, scenic trails, and a vibrant backpacker community await.</p>
+            <div class="trip-card-footer">
+              <div class="trip-card-dates">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/>
+                </svg>
+                Jan 15 - Jan 20
+              </div>
+              <div class="trip-card-spots">4 spots left</div>
+            </div>
+          </div>
+        </a>
+
       </div>
 
-      <!-- Results Info -->
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;" class="animate-fade-in-up delay-1">
-        <div style="font-size: 14px; color: var(--color-text-muted);" id="resultsCount">Showing 3 trips</div>
-        <div class="dropdown">
-          <button class="btn btn-ghost btn-sm dropdown-trigger" style="font-size: 13px;">Sort by: Recommended</button>
-          <div class="dropdown-menu">
-            <a href="#" class="dropdown-item">Recommended</a>
-            <a href="#" class="dropdown-item">Date (Nearest)</a>
-            <a href="#" class="dropdown-item">Budget (Low to High)</a>
-          </div>
+      <!-- EMPTY STATE -->
+      <div class="empty-state-container animate-fade-in-up" id="emptyState" style="display: none;">
+        <div class="empty-state">
+          <svg class="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+          <h3 class="empty-state-title">No trips found</h3>
+          <p class="empty-state-description">Try adjusting your filters or search for a different destination</p>
+          <button class="btn btn-primary" onclick="resetAllFilters()">Clear Filters</button>
         </div>
-      </div>
-
-      <!-- Grid -->
-      <div class="grid grid-4 animate-fade-in-up delay-2" id="searchResultsGrid">
-        
-        <!-- Result Card 1 -->
-        <a href="trip-detail.html" class="trip-card">
-          <div class="trip-card-image-placeholder" style="background: linear-gradient(135deg, #DBEAFE, #CCFBF1); color: #2563EB;">🏖️</div>
-          <div class="trip-card-body">
-            <h3 class="trip-card-destination">Goa New Year Bash</h3>
-            <div class="trip-card-dates">
-              <span>📅 Dec 28 - Jan 2</span>
-            </div>
-            <p class="trip-card-desc">Looking for chill people to share an Airbnb in North Goa. Mostly beach hopping, cafes, and a couple of parties.</p>
-            <div class="trip-card-meta">
-              <div class="trip-card-budget">₹15,000 <span>/person</span></div>
-              <div class="trip-card-travelers">
-                <div class="avatar-group">
-                  <div class="avatar avatar-sm" style="background: #E2E8F0; color: #475569;">+2</div>
-                </div>
-                <span>2 Spots left</span>
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <!-- Result Card 2 -->
-        <a href="trip-detail.html" class="trip-card">
-          <div class="trip-card-image-placeholder" style="background: linear-gradient(135deg, #FFF7ED, #FFEDD5); color: #EA580C;">🏔️</div>
-          <div class="trip-card-badge badge badge-warning">Fast Filling</div>
-          <div class="trip-card-body">
-            <h3 class="trip-card-destination">Manali Winter Trek</h3>
-            <div class="trip-card-dates">
-              <span>📅 Feb 10 - Feb 15</span>
-            </div>
-            <p class="trip-card-desc">A moderately challenging trek in the snow. Need people who are physically fit and love the cold!</p>
-            <div class="trip-card-meta">
-              <div class="trip-card-budget">₹8,500 <span>/person</span></div>
-              <div class="trip-card-travelers">
-                <div class="avatar-group">
-                  <div class="avatar avatar-sm" style="background: #E2E8F0; color: #475569;">+5</div>
-                </div>
-                <span>1 Spot left</span>
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <!-- Result Card 3 -->
-        <a href="trip-detail.html" class="trip-card">
-          <div class="trip-card-image-placeholder" style="background: linear-gradient(135deg, #F3E8FF, #E0E7FF); color: #4338CA;">🏰</div>
-          <div class="trip-card-body">
-            <h3 class="trip-card-destination">Jaipur Heritage Walk</h3>
-            <div class="trip-card-dates">
-              <span>📅 Jan 20 - Jan 23</span>
-            </div>
-            <p class="trip-card-desc">Exploring forts, palaces, and local Rajasthani food. Budget-friendly trip staying in a hostel.</p>
-            <div class="trip-card-meta">
-              <div class="trip-card-budget">₹4,000 <span>/person</span></div>
-              <div class="trip-card-travelers">
-                <div class="avatar-group">
-                  <div class="avatar avatar-sm" style="background: #DBEAFE; color: #2563EB;">R</div>
-                </div>
-                <span>3 Spots left</span>
-              </div>
-            </div>
-          </div>
-        </a>
-
       </div>
 
     </div>
@@ -191,5 +378,29 @@
   <script src="js/app.js"></script>
   <script src="js/dashboard.js"></script>
   <script src="js/discover.js"></script>
+
+  <script>
+    function toggleUserMenu(e) {
+      e.stopPropagation();
+      const dropdown = e.target.closest('.sidebar-user').querySelector('.sidebar-user-dropdown');
+      dropdown.classList.toggle('active');
+    }
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.sidebar-user-dropdown').forEach(d => d.classList.remove('active'));
+    });
+
+    function performSearch() {
+      const searchTerm = document.getElementById('discoverSearch').value;
+      console.log('Searching for:', searchTerm);
+    }
+
+    function resetAllFilters() {
+      document.getElementById('budgetFilter').value = '';
+      document.getElementById('styleFilter').value = '';
+      document.getElementById('monthFilter').value = '';
+      document.getElementById('discoverSearch').value = '';
+    }
+  </script>
 </body>
 </html>
