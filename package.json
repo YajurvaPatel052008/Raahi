@@ -1,0 +1,25 @@
+{
+  "name": "raahi",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "http-server -p 3000 -c-1",
+    "build": "echo 'No build needed for static site'",
+    "start": "http-server -p 3000 -c-1",
+    "test:backend": "node verify-supabase.js"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.47.10",
+    "next": "15.3.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.2",
+    "tailwindcss": "^4",
+    "@tailwindcss/postcss": "^4"
+  }
+}

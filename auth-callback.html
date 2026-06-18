@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authenticating — Raahi</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <style>
+    body { display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:Inter,sans-serif;background:#f8fafc; }
+    .box { text-align:center; }
+    .spinner { width:40px;height:40px;border:3px solid #e5e7eb;border-top-color:#2563EB;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="spinner"></div>
+    <p style="color:#64748b;font-size:15px;">Completing authentication...</p>
+  </div>
+  <script>
+    // This page handles the magic link / OTP redirect from Supabase email
+    window.addEventListener('load', async () => {
+      // Supabase automatically picks up the token from the URL hash
+      const { data: { session }, error } = await window.raahi.supabase.auth.getSession();
+
+      if (session) {
+        window.location.href = 'dashboard.html';
+      } else {
+        // Try to exchange code if present (PKCE flow)
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+        if (code) {
+          const { error: exchErr } = await window.raahi.supabase.auth.exchangeCodeForSession(code);
+          if (!exchErr) {
+            window.location.href = 'dashboard.html';
+            return;
+          }
+        }
+        // Fallback: redirect to login
+        window.location.href = 'login.html?error=Authentication failed. Please try again.';
+      }
+    });
+  </script>
+</body>
+</html>

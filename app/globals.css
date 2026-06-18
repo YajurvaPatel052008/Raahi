@@ -1,0 +1,31 @@
+/* Global Styles for RAAHI */
+
+@import '../css/variables.css';
+@import '../css/reset.css';
+@import '../css/typography.css';
+@import '../css/components.css';
+@import '../css/layout.css';
+@import '../css/animations.css';
+@import '../css/utilities.css';
+@import '../css/auth.css';
+@import '../css/onboarding.css';
+@import '../css/chat.css';
+@import '../css/dashboard.css';
+@import '../css/landing.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary, 'Inter', sans-serif);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
