@@ -1,15 +1,16 @@
 /* ============================================
-   RAAHI — Dashboard Logic (Supabase Connected)
+   RAAHI — Dashboard Logic (Modern Redesign)
+   Supabase Connected - Backend Preserved
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', async () => {
   setupSidebar();
+  setupHeaderDropdowns();
+  initializeInspiration();
 
-  // Auth guard
   const user = await window.raahi.requireAuth();
   if (!user) return;
 
-  // Load data in parallel
   await Promise.all([
     loadProfile(user),
     loadMyTrips(user.id),
@@ -21,98 +22,228 @@ async function loadProfile(user) {
   const { data: profile } = await window.raahi.getProfile(user.id);
   if (!profile) return;
 
-  // Update user name
-  const nameEl = document.getElementById('userName') || document.querySelector('.user-name');
-  if (nameEl) nameEl.textContent = profile.full_name || user.email;
-
-  const firstNameEl = document.querySelector('.welcome-name');
-  if (firstNameEl) firstNameEl.textContent = profile.full_name?.split(' ')[0] || 'Traveller';
-
-  // Update avatar initials
-  const avatarEl = document.querySelector('.user-avatar, .avatar');
-  if (avatarEl) {
-    if (profile.avatar_url) {
-      avatarEl.innerHTML = `<img src="${profile.avatar_url}" alt="avatar" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
-    } else {
-      avatarEl.textContent = profile.full_name?.[0]?.toUpperCase() || 'U';
-    }
+  const firstNameEl = document.getElementById('userFirstName');
+  if (firstNameEl) {
+    firstNameEl.textContent = profile.full_name?.split(' ')[0] || 'Traveller';
   }
 
-  // Update trust score & level
-  const trustScoreEl = document.getElementById('trustScore');
-  const trustLevelEl = document.getElementById('trustLevel');
-  const trustBarEl = document.getElementById('trustBar');
+  const sidebarUserName = document.getElementById('sidebarUserName');
+  const sidebarUserEmail = document.getElementById('sidebarUserEmail');
+  const sidebarAvatar = document.getElementById('sidebarAvatar');
 
-  if (trustScoreEl) trustScoreEl.textContent = profile.trust_score || 0;
-  if (trustLevelEl) trustLevelEl.textContent = profile.trust_level || 'Bronze';
-  if (trustBarEl) trustBarEl.style.width = `${Math.min(profile.trust_score || 0, 100)}%`;
-
-  // College info
-  const collegeEl = document.querySelector('.user-college');
-  if (collegeEl) collegeEl.textContent = profile.college;
+  if (sidebarUserName) {
+    sidebarUserName.textContent = profile.full_name || user.email;
+  }
+  if (sidebarUserEmail) {
+    sidebarUserEmail.textContent = user.email;
+  }
+  if (sidebarAvatar) {
+    if (profile.avatar_url) {
+      sidebarAvatar.innerHTML = `<img src="${profile.avatar_url}" alt="avatar" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
+    } else {
+      const initials = profile.full_name
+        ?.split(' ')
+        .map(n => n[0])
+        .join('')
+        .toUpperCase() || 'U';
+      sidebarAvatar.textContent = initials;
+      sidebarAvatar.style.background = 'linear-gradient(135deg, #2563EB, #06B6D4)';
+    }
+  }
 }
 
 async function loadMyTrips(userId) {
   const { data: trips } = await window.raahi.getMyTrips(userId);
-  const grid = document.getElementById('myTripsGrid') || document.getElementById('tripsGrid');
 
-  if (!grid || !trips) return;
-
-  if (trips.length === 0) {
-    grid.innerHTML = `
-      <div class="empty-state" style="grid-column:1/-1;text-align:center;padding:48px;">
-        <div style="font-size:40px;margin-bottom:12px;">✈️</div>
-        <h3>No trips yet</h3>
-        <p style="color:var(--color-text-muted);margin-bottom:16px;">Create your first trip and find travel partners!</p>
-        <a href="trips.html" class="btn btn-primary">Create a Trip</a>
-      </div>`;
+  if (!trips || trips.length === 0) {
+    console.log('No trips found');
     return;
   }
 
-  grid.innerHTML = trips.slice(0, 3).map(trip => `
-    <div class="trip-card card" style="cursor:pointer;" onclick="window.location='trip-detail.html?id=${trip.id}'">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+  const upcomingTrip = trips.find(t => t.status === 'open') || trips[0];
+  if (upcomingTrip) {
+    displayTripPreview(upcomingTrip);
+  }
+}
+
+function displayTripPreview(trip) {
+  const tripPreviewTitle = document.querySelector('.trip-preview-title');
+  const tripPreviewDates = document.querySelector('.trip-preview-dates');
+  const tripPreviewMembers = document.querySelector('.trip-preview-members');
+  const tripPreviewMeta = document.querySelector('.trip-preview-meta');
+  const tripPreviewImage = document.querySelector('.trip-preview-image');
+
+  if (tripPreviewTitle) {
+    tripPreviewTitle.textContent = trip.title || trip.destination;
+  }
+
+  if (tripPreviewDates) {
+    const svg = tripPreviewDates.querySelector('svg');
+    tripPreviewDates.innerHTML = svg ? svg.outerHTML : '📅';
+    tripPreviewDates.appendChild(
+      document.createTextNode(
+        ` ${trip.start_date} - ${trip.end_date}`
+      )
+    );
+  }
+
+  if (tripPreviewMembers) {
+    tripPreviewMembers.innerHTML = `
+      <div class="avatar-group-inline">
+        <div class="avatar avatar-xs" style="background: #2563EB; color: white;">Y</div>
+      </div>
+      <span class="trip-preview-count">${trip.current_members || 1} member${trip.current_members !== 1 ? 's' : ''} confirmed</span>
+    `;
+  }
+
+  if (tripPreviewMeta) {
+    tripPreviewMeta.innerHTML = `
+      <div class="meta-item">
+        <span class="meta-label">Budget</span>
+        <span class="meta-value">₹${Number(trip.budget).toLocaleString('en-IN')}</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Status</span>
         <span class="badge badge-${trip.status === 'open' ? 'success' : 'neutral'}">${trip.status}</span>
-        <span style="font-size:13px;color:var(--color-text-muted);">${trip.travel_type}</span>
       </div>
-      <h3 style="font-weight:700;font-size:18px;margin-bottom:4px;">${trip.destination}</h3>
-      <p style="font-size:13px;color:var(--color-text-muted);margin-bottom:16px;">${trip.start_date} — ${trip.end_date} · ₹${Number(trip.budget).toLocaleString('en-IN')}</p>
-      <div style="display:flex;justify-content:space-between;font-size:13px;">
-        <span>👥 ${trip.current_members}/${trip.max_members} members</span>
-        <a href="trip-detail.html?id=${trip.id}" class="text-link" style="font-size:13px;">View →</a>
-      </div>
-    </div>`).join('');
+    `;
+  }
+
+  if (tripPreviewImage) {
+    tripPreviewImage.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+  }
 }
 
 async function loadStats(userId) {
   const supabase = window.raahi.supabase;
 
-  const [tripsRes, notifRes] = await Promise.all([
-    supabase.from('trips').select('id', { count: 'exact', head: true }).eq('creator_id', userId),
-    supabase.from('notifications').select('id', { count: 'exact', head: true }).eq('user_id', userId).eq('is_read', false)
+  const [tripsRes, matchesRes, reviewsRes] = await Promise.all([
+    supabase
+      .from('trips')
+      .select('id', { count: 'exact', head: true })
+      .eq('creator_id', userId),
+    supabase
+      .from('trip_members')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', userId)
+      .eq('join_status', 'approved'),
+    supabase
+      .from('reviews')
+      .select('id', { count: 'exact', head: true })
+      .eq('reviewed_user_id', userId)
   ]);
 
   const tripCountEl = document.getElementById('tripCount');
-  const notifCountEl = document.getElementById('notifCount');
-
-  if (tripCountEl) tripCountEl.textContent = tripsRes.count || 0;
-  if (notifCountEl) notifCountEl.textContent = notifRes.count || 0;
+  if (tripCountEl) {
+    tripCountEl.textContent = tripsRes.count || 0;
+    animateCounter(tripCountEl, 0, tripsRes.count || 0);
+  }
 }
 
-// Logout handler
-window.handleLogout = async function() {
-  await window.raahi.signOut();
-};
+function animateCounter(element, start, end) {
+  const duration = 1000;
+  const increment = (end - start) / (duration / 16);
+  let current = start;
+
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= end) {
+      current = end;
+      clearInterval(timer);
+    }
+    element.textContent = Math.floor(current);
+  }, 16);
+}
 
 function setupSidebar() {
   const sidebar = document.querySelector('.sidebar');
   const overlay = document.querySelector('.sidebar-overlay');
   const toggleBtn = document.querySelector('.sidebar-toggle-btn');
   const closeBtn = document.querySelector('.sidebar-close');
+
   if (!sidebar) return;
-  const open = () => { sidebar.classList.add('active'); if (overlay) overlay.classList.add('active'); document.body.style.overflow = 'hidden'; };
-  const close = () => { sidebar.classList.remove('active'); if (overlay) overlay.classList.remove('active'); document.body.style.overflow = ''; };
-  if (toggleBtn) toggleBtn.addEventListener('click', open);
-  if (closeBtn) closeBtn.addEventListener('click', close);
-  if (overlay) overlay.addEventListener('click', close);
+
+  const openSidebar = () => {
+    sidebar.classList.add('active');
+    if (overlay) overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeSidebar = () => {
+    sidebar.classList.remove('active');
+    if (overlay) overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  if (toggleBtn) toggleBtn.addEventListener('click', openSidebar);
+  if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+  if (overlay) overlay.addEventListener('click', closeSidebar);
+
+  document.querySelectorAll('.sidebar-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 1024) {
+        closeSidebar();
+      }
+    });
+  });
 }
+
+function setupHeaderDropdowns() {
+  const notificationBtn = document.querySelector('.notification-btn');
+  const notificationDropdown = document.querySelector('.notification-dropdown');
+
+  if (notificationBtn && notificationDropdown) {
+    notificationBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      notificationDropdown.classList.toggle('active');
+    });
+  }
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.notification-dropdown, .sidebar-user-dropdown').forEach(
+      dropdown => dropdown.classList.remove('active')
+    );
+  });
+}
+
+function initializeInspiration() {
+  const inspirationCards = document.querySelectorAll('.inspiration-card');
+
+  inspirationCards.forEach((card, index) => {
+    card.addEventListener('mouseenter', () => {
+      card.style.transform = 'translateY(-6px)';
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'translateY(0)';
+    });
+
+    const destinationLinks = card.querySelectorAll('a');
+    destinationLinks.forEach(link => {
+      if (!link.href || link.href === '#') {
+        link.href = 'discover.html';
+      }
+    });
+  });
+
+  const destinationCards = document.querySelectorAll('.destination-card');
+  destinationCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.transform = 'translateY(-4px)';
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'translateY(0)';
+    });
+  });
+}
+
+window.handleLogout = async function() {
+  await window.raahi.signOut();
+};
+
+window.toggleUserMenu = function(e) {
+  e.stopPropagation();
+  const dropdown = e.target.closest('.sidebar-user').querySelector('.sidebar-user-dropdown');
+  dropdown.classList.toggle('active');
+};

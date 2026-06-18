@@ -15,290 +15,618 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/utilities.css">
   <link rel="stylesheet" href="css/dashboard.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="js/supabase-client.js"></script>
 </head>
 <body>
 
-  <!-- Sidebar Overlay (Mobile) -->
   <div class="sidebar-overlay"></div>
 
-  <!-- ═══════════════════════════════════════════
-       SIDEBAR
-       ═══════════════════════════════════════════ -->
-  <aside class="sidebar">
+  <aside class="sidebar sidebar-modern">
     <div class="sidebar-header">
       <a href="dashboard.html" class="sidebar-brand">
-        RAAHI <span class="brand-dot"></span>
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+          <path d="M9 9h6M9 13h6M9 17h3"/>
+        </svg>
+        <span class="brand-text">RAAHI</span>
       </a>
-      <div class="sidebar-close">✕</div>
+      <div class="sidebar-close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </div>
     </div>
 
     <nav class="sidebar-nav">
-      <div class="sidebar-section-title">Main</div>
-      <a href="dashboard.html" class="sidebar-link active">
-        <span class="sidebar-link-icon">📊</span>
-        <span>Dashboard</span>
-      </a>
-      <a href="discover.html" class="sidebar-link">
-        <span class="sidebar-link-icon">🔍</span>
-        <span>Discover</span>
-      </a>
-      <a href="matches.html" class="sidebar-link">
-        <span class="sidebar-link-icon">🤝</span>
-        <span>Matches</span>
-        <span class="sidebar-link-badge">3</span>
-      </a>
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">MAIN</div>
+        <a href="dashboard.html" class="sidebar-link active" data-icon="dashboard">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="discover.html" class="sidebar-link" data-icon="discover">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
+          </svg>
+          <span>Discover</span>
+        </a>
+        <a href="matches.html" class="sidebar-link" data-icon="matches">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <span>Matches</span>
+          <span class="sidebar-link-badge">3</span>
+        </a>
+      </div>
 
-      <div class="sidebar-section-title mt-4">My Travel</div>
-      <a href="trips.html" class="sidebar-link">
-        <span class="sidebar-link-icon">✈️</span>
-        <span>My Trips</span>
-      </a>
-      <a href="chat.html" class="sidebar-link">
-        <span class="sidebar-link-icon">💬</span>
-        <span>Messages</span>
-        <span class="sidebar-link-badge">2</span>
-      </a>
-      <a href="reviews.html" class="sidebar-link">
-        <span class="sidebar-link-icon">⭐</span>
-        <span>Reviews</span>
-      </a>
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">MY TRAVEL</div>
+        <a href="trips.html" class="sidebar-link" data-icon="trips">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 3h12a1 1 0 0 1 1 1v3H5V4a1 1 0 0 1 1-1z"/><rect x="4" y="7" width="16" height="12" rx="1"/><path d="M10 12v4M14 12v4"/>
+          </svg>
+          <span>My Trips</span>
+        </a>
+        <a href="chat.html" class="sidebar-link" data-icon="messages">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>Messages</span>
+          <span class="sidebar-link-badge">2</span>
+        </a>
+        <a href="reviews.html" class="sidebar-link" data-icon="reviews">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 10.26 24 10.26 17.55 16.74 19.64 25 12 19.52 4.36 25 6.45 16.74 0 10.26 8.91 10.26 12 2"/>
+          </svg>
+          <span>Reviews</span>
+        </a>
+      </div>
 
-      <div class="sidebar-section-title mt-4">Account</div>
-      <a href="profile.html" class="sidebar-link">
-        <span class="sidebar-link-icon">👤</span>
-        <span>Profile</span>
-      </a>
-      <a href="settings.html" class="sidebar-link">
-        <span class="sidebar-link-icon">⚙️</span>
-        <span>Settings</span>
-      </a>
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">ACCOUNT</div>
+        <a href="profile.html" class="sidebar-link" data-icon="profile">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span>Profile</span>
+        </a>
+        <a href="settings.html" class="sidebar-link" data-icon="settings">
+          <svg class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m3.08 3.08l4.24 4.24M1 12h6m6 0h6m-17.78 7.78l4.24-4.24m3.08-3.08l4.24-4.24"/>
+          </svg>
+          <span>Settings</span>
+        </a>
+      </div>
     </nav>
 
     <div class="sidebar-footer">
-      <div class="sidebar-user dropdown">
-        <div class="avatar avatar-sm avatar-status" id="sidebarAvatar" style="background: #DBEAFE; color: #2563EB;">A</div>
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm" id="sidebarAvatar" style="background: linear-gradient(135deg, #2563EB, #06B6D4); color: white;">Y</div>
         <div class="sidebar-user-info">
           <div class="sidebar-user-name" id="sidebarUserName">Loading...</div>
-          <div class="sidebar-user-email" id="sidebarUserEmail"></div>
+          <div class="sidebar-user-email" id="sidebarUserEmail">student@college.ac.in</div>
         </div>
-        <div class="dropdown-trigger" style="color: var(--color-text-muted);">⋮</div>
-        
-        <div class="dropdown-menu">
+        <button class="sidebar-user-menu" onclick="toggleUserMenu(event)">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/>
+          </svg>
+        </button>
+
+        <div class="sidebar-user-dropdown">
           <a href="profile.html" class="dropdown-item">View Profile</a>
-          <a href="settings.html" class="dropdown-item">Account Settings</a>
+          <a href="settings.html" class="dropdown-item">Settings</a>
           <div class="dropdown-divider"></div>
-          <button onclick="window.raahi.signOut()" class="dropdown-item" style="color:var(--color-error);background:none;border:none;width:100%;text-align:left;cursor:pointer;padding:8px 16px;">Log out</button>
+          <button onclick="window.raahi.signOut()" class="dropdown-item danger">Log out</button>
         </div>
       </div>
     </div>
   </aside>
 
-  <!-- ═══════════════════════════════════════════
-       APP HEADER
-       ═══════════════════════════════════════════ -->
-  <header class="app-header">
-    <div class="app-header-left">
-      <div class="sidebar-toggle-btn">☰</div>
-      <div style="font-weight: 600;" id="welcomeGreeting">Welcome back! 👋</div>
-    </div>
-
-    <div class="app-header-right">
-      <div class="dropdown">
-        <button class="btn btn-icon btn-ghost dropdown-trigger" style="position: relative;">
-          🔔
-          <span style="position: absolute; top: 6px; right: 8px; width: 8px; height: 8px; background: var(--color-error); border-radius: 50%;"></span>
+  <header class="app-header-modern sticky">
+    <div class="header-content">
+      <div class="header-left">
+        <button class="sidebar-toggle-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
         </button>
-        <div class="dropdown-menu" style="width: 300px; padding: 0;">
-          <div style="padding: 12px 16px; border-bottom: 1px solid var(--color-border-light); font-weight: 600;">Notifications</div>
-          <div style="max-height: 300px; overflow-y: auto;">
-            <a href="#" style="display: flex; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--color-border-light); background: var(--color-primary-50);">
-              <div class="avatar avatar-sm" style="background: #CCFBF1; color: #0D9488; flex-shrink: 0;">N</div>
-              <div>
-                <div style="font-size: 13px; color: var(--color-text);"><strong>Neha Gupta</strong> requested to join your Goa trip.</div>
-                <div style="font-size: 11px; color: var(--color-text-light); margin-top: 4px;">2 hours ago</div>
-              </div>
-            </a>
-            <a href="#" style="display: flex; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--color-border-light);">
-              <div class="avatar avatar-sm" style="background: #FED7AA; color: #EA580C; flex-shrink: 0;">R</div>
-              <div>
-                <div style="font-size: 13px; color: var(--color-text);"><strong>Rahul Verma</strong> sent you a message.</div>
-                <div style="font-size: 11px; color: var(--color-text-light); margin-top: 4px;">5 hours ago</div>
-              </div>
-            </a>
-          </div>
-          <a href="#" style="display: block; text-align: center; padding: 12px; font-size: 13px; color: var(--color-primary); font-weight: 500;">View all</a>
+        <div class="header-search-bar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" placeholder="Search trips, matches..." class="header-search-input">
         </div>
       </div>
-      <a href="trips.html#create" class="btn btn-primary btn-sm hide-mobile">+ New Trip</a>
+
+      <div class="header-right">
+        <div class="header-notification-icon">
+          <button class="notification-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            <span class="notification-badge">2</span>
+          </button>
+          <div class="notification-dropdown">
+            <div class="notification-header">Notifications</div>
+            <div class="notification-list">
+              <a href="#" class="notification-item unread">
+                <div class="notification-avatar" style="background: #06B6D4;">N</div>
+                <div class="notification-content">
+                  <div class="notification-title"><strong>Neha Gupta</strong> requested to join your Goa trip</div>
+                  <div class="notification-time">2 hours ago</div>
+                </div>
+              </a>
+              <a href="#" class="notification-item">
+                <div class="notification-avatar" style="background: #F97316;">R</div>
+                <div class="notification-content">
+                  <div class="notification-title"><strong>Rahul Verma</strong> sent you a message</div>
+                  <div class="notification-time">5 hours ago</div>
+                </div>
+              </a>
+            </div>
+            <a href="#" class="notification-footer">View all notifications</a>
+          </div>
+        </div>
+
+        <a href="trips.html" class="btn btn-primary btn-sm hide-mobile">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="16" height="16">
+            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+            <path d="M12 8v8M8 12h8" stroke="white" fill="none" stroke-width="2"/>
+          </svg>
+          New Trip
+        </a>
+      </div>
     </div>
   </header>
 
-  <!-- ═══════════════════════════════════════════
-       MAIN CONTENT
-       ═══════════════════════════════════════════ -->
   <main class="main-content">
+    <!-- HERO BANNER -->
+    <div class="hero-banner">
+      <div class="hero-background"></div>
+      <div class="hero-gradient"></div>
+      <div class="hero-content">
+        <div class="hero-greeting">
+          <h1 class="hero-greeting-main">
+            Good morning, <span id="userFirstName" class="gradient-text">Yajurva</span> 👋
+          </h1>
+          <p class="hero-greeting-sub">Ready for your next adventure? Let's find the perfect trip or travel buddy</p>
+        </div>
+        <div class="hero-cta-buttons">
+          <a href="discover.html" class="btn btn-primary btn-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            Explore Trips
+          </a>
+          <a href="trips.html" class="btn btn-outline-light btn-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+              <polyline points="12 1 12 23M1 12h22"/>
+            </svg>
+            Create Trip
+          </a>
+        </div>
+      </div>
+    </div>
+
     <div class="container container-full">
-      
-      <div class="page-header animate-fade-in-up">
-        <div class="page-header-left">
-          <h1 class="page-title">Dashboard</h1>
-          <p class="page-subtitle">Here's what's happening with your travel plans.</p>
-        </div>
-      </div>
 
-      <!-- Stats -->
-      <div class="stats-grid mb-8 animate-fade-in-up delay-1">
-        <div class="stat-card">
-          <div class="stat-card-icon" style="background: var(--color-primary-50); color: var(--color-primary);">✈️</div>
-          <div>
-            <div class="stat-card-value">2</div>
-            <div class="stat-card-label">Upcoming Trips</div>
-          </div>
-        </div>
-        
-        <div class="stat-card">
-          <div class="stat-card-icon" style="background: var(--color-secondary-50); color: var(--color-secondary);">🤝</div>
-          <div>
-            <div class="stat-card-value">5</div>
-            <div class="stat-card-label">New Matches</div>
-            <div class="stat-card-change positive">↑ 2 this week</div>
-          </div>
+      <!-- PREMIUM STATS CARDS -->
+      <section class="stats-section animate-fade-in-up">
+        <div class="section-header">
+          <h2 class="section-title">Your Travel Dashboard</h2>
+          <p class="section-subtitle">Track your journey and find your travel community</p>
         </div>
 
-        <div class="stat-card">
-          <div class="stat-card-icon" style="background: var(--color-accent-50); color: var(--color-accent);">⭐</div>
-          <div>
-            <div class="stat-card-value">4.8</div>
-            <div class="stat-card-label">Trust Score</div>
-            <div class="stat-card-change positive">Based on 12 reviews</div>
-          </div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-card-icon" style="background: var(--color-bg-tertiary); color: var(--color-text-muted);">👀</div>
-          <div>
-            <div class="stat-card-value">24</div>
-            <div class="stat-card-label">Profile Views</div>
-            <div class="stat-card-change positive">↑ 15%</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-3 animate-fade-in-up delay-2">
-        
-        <!-- Left Column (Wider) -->
-        <div style="grid-column: span 1;" class="dashboard-left">
-          
-          <div class="card mb-6">
-            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-              <h3 style="font-size: 16px; font-weight: 600;">Upcoming Trip</h3>
-              <a href="trips.html" style="font-size: 13px; color: var(--color-primary); font-weight: 500;">View Details</a>
+        <div class="stats-grid-premium">
+          <div class="stat-card-premium" style="--stat-color: #2563EB;">
+            <div class="stat-card-header">
+              <div class="stat-card-icon-premium">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 3h12a1 1 0 0 1 1 1v3H5V4a1 1 0 0 1 1-1z"/><rect x="4" y="7" width="16" height="12" rx="1"/><path d="M10 12v4M14 12v4"/>
+                </svg>
+              </div>
+              <div class="stat-card-trend positive">↑ +2</div>
             </div>
-            
-            <div style="display: flex; gap: 16px;">
-              <div style="width: 80px; height: 80px; border-radius: 12px; background: var(--color-primary-100); display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0;">🏖️</div>
-              <div style="flex: 1;">
-                <div style="font-weight: 600; font-size: 16px; margin-bottom: 4px;">Goa New Year Bash</div>
-                <div style="font-size: 13px; color: var(--color-text-muted); display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
-                  📅 Dec 28 - Jan 2
+            <div class="stat-card-content">
+              <div class="stat-card-value-large" id="tripCount">0</div>
+              <div class="stat-card-label-premium">Upcoming Trips</div>
+              <div class="stat-card-description">Confirmed and waiting</div>
+            </div>
+          </div>
+
+          <div class="stat-card-premium" style="--stat-color: #06B6D4;">
+            <div class="stat-card-header">
+              <div class="stat-card-icon-premium">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <div class="stat-card-trend positive">↑ +1</div>
+            </div>
+            <div class="stat-card-content">
+              <div class="stat-card-value-large">5</div>
+              <div class="stat-card-label-premium">Travel Matches</div>
+              <div class="stat-card-description">92% compatibility average</div>
+            </div>
+          </div>
+
+          <div class="stat-card-premium" style="--stat-color: #F97316;">
+            <div class="stat-card-header">
+              <div class="stat-card-icon-premium">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 10.26 24 10.26 17.55 16.74 19.64 25 12 19.52 4.36 25 6.45 16.74 0 10.26 8.91 10.26 12 2"/>
+                </svg>
+              </div>
+              <div class="stat-card-badge">4.8/5</div>
+            </div>
+            <div class="stat-card-content">
+              <div class="stat-card-value-large">4.8</div>
+              <div class="stat-card-label-premium">Trust Score</div>
+              <div class="stat-card-description">Based on 12 reviews</div>
+            </div>
+          </div>
+
+          <div class="stat-card-premium" style="--stat-color: #22C55E;">
+            <div class="stat-card-header">
+              <div class="stat-card-icon-premium">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                </svg>
+              </div>
+              <div class="stat-card-trend positive">↑ 15%</div>
+            </div>
+            <div class="stat-card-content">
+              <div class="stat-card-value-large">284</div>
+              <div class="stat-card-label-premium">Profile Views</div>
+              <div class="stat-card-description">Up from last week</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INSPIRATION SECTION - Pinterest Style Masonry -->
+      <section class="inspiration-section animate-fade-in-up delay-1">
+        <div class="section-header">
+          <h2 class="section-title">Inspiration For Your Next Journey</h2>
+          <p class="section-subtitle">Discover stunning travel destinations and experiences from around the world</p>
+        </div>
+
+        <div class="inspiration-grid">
+          <div class="inspiration-card inspiration-card-lg" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: relative; overflow: hidden;">
+            <div class="inspiration-card-image" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22><rect fill=%22%23667eea%22 width=%221200%22 height=%22800%22/><circle cx=%22300%22 cy=%22400%22 r=%22200%22 fill=%22%23764ba2%22 opacity=%220.5%22/><circle cx=%22900%22 cy=%22200%22 r=%22150%22 fill=%22%23f093fb%22 opacity=%220.3%22/></svg>'); background-size: cover; background-position: center;"></div>
+            <div class="inspiration-card-content">
+              <h3 class="inspiration-card-title">Mountains</h3>
+              <p class="inspiration-card-meta">Alpine adventures await</p>
+            </div>
+          </div>
+
+          <div class="inspiration-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); overflow: hidden;">
+            <div class="inspiration-card-image" style="background: linear-gradient(135deg, rgba(240, 147, 251, 0.8), rgba(245, 87, 108, 0.8)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 600 600%22><rect fill=%22%23f093fb%22 width=%22600%22 height=%22600%22/><path d=%22M0 300 Q150 200, 300 300 T600 300 L600 600 L0 600%22 fill=%22%23f5576c%22 opacity=%220.6%22/></svg>'); background-size: cover;"></div>
+            <div class="inspiration-card-content">
+              <h3 class="inspiration-card-title">Beaches</h3>
+              <p class="inspiration-card-meta">Sandy shores await</p>
+            </div>
+          </div>
+
+          <div class="inspiration-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); overflow: hidden;">
+            <div class="inspiration-card-image" style="background: linear-gradient(135deg, rgba(79, 172, 254, 0.8), rgba(0, 242, 254, 0.8)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 600 600%22><rect fill=%22%234facfe%22 width=%22600%22 height=%22600%22/><circle cx=%22300%22 cy=%22300%22 r=%22150%22 fill=%22%2300f2fe%22 opacity=%220.4%22/></svg>'); background-size: cover;"></div>
+            <div class="inspiration-card-content">
+              <h3 class="inspiration-card-title">Backpacking</h3>
+              <p class="inspiration-card-meta">Budget-friendly treks</p>
+            </div>
+          </div>
+
+          <div class="inspiration-card inspiration-card-lg" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); overflow: hidden;">
+            <div class="inspiration-card-image" style="background: linear-gradient(135deg, rgba(250, 112, 154, 0.8), rgba(254, 225, 64, 0.8)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22><rect fill=%22%23fa709a%22 width=%221200%22 height=%22800%22/><polygon points=%22600,100 800,400 600,700 400,400%22 fill=%22%23fee140%22 opacity=%220.5%22/></svg>'); background-size: cover;"></div>
+            <div class="inspiration-card-content">
+              <h3 class="inspiration-card-title">Road Trips</h3>
+              <p class="inspiration-card-meta">Freedom on the open road</p>
+            </div>
+          </div>
+
+          <div class="inspiration-card" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); overflow: hidden;">
+            <div class="inspiration-card-image" style="background: linear-gradient(135deg, rgba(168, 237, 234, 0.8), rgba(254, 214, 227, 0.8)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 600 600%22><rect fill=%22%23a8edea%22 width=%22600%22 height=%22600%22/><circle cx=%22300%22 cy=%22150%22 r=%22100%22 fill=%22%23fed6e3%22 opacity=%220.5%22/></svg>'); background-size: cover;"></div>
+            <div class="inspiration-card-content">
+              <h3 class="inspiration-card-title">International</h3>
+              <p class="inspiration-card-meta">Cross borders & cultures</p>
+            </div>
+          </div>
+
+          <div class="inspiration-card" style="background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%); overflow: hidden;">
+            <div class="inspiration-card-image" style="background: linear-gradient(135deg, rgba(255, 154, 86, 0.8), rgba(255, 106, 136, 0.8)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 600 600%22><rect fill=%22%23ff9a56%22 width=%22600%22 height=%22600%22/><path d=%22M0 0 L600 0 L600 400 Q300 600, 0 400 Z%22 fill=%22%23ff6a88%22 opacity=%220.6%22/></svg>'); background-size: cover;"></div>
+            <div class="inspiration-card-content">
+              <h3 class="inspiration-card-title">Group Travel</h3>
+              <p class="inspiration-card-meta">Friends & adventures</p>
+            </div>
+          </div>
+
+          <div class="inspiration-card" style="background: linear-gradient(135deg, #2e2e78 0%, #662d8c 100%); overflow: hidden;">
+            <div class="inspiration-card-image" style="background: linear-gradient(135deg, rgba(46, 46, 120, 0.8), rgba(102, 45, 140, 0.8)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 600 600%22><rect fill=%22%232e2e78%22 width=%22600%22 height=%22600%22/><circle cx=%22150%22 cy=%22150%22 r=%2250%22 fill=%22%23662d8c%22 opacity=%220.5%22/><circle cx=%22450%22 cy=%22450%22 r=%2280%22 fill=%22%23662d8c%22 opacity=%220.5%22/></svg>'); background-size: cover;"></div>
+            <div class="inspiration-card-content">
+              <h3 class="inspiration-card-title">Adventure</h3>
+              <p class="inspiration-card-meta">Thrills & adrenaline</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESTINATION SHOWCASE -->
+      <section class="destinations-section animate-fade-in-up delay-2">
+        <div class="section-header">
+          <h2 class="section-title">Popular Destinations</h2>
+          <p class="section-subtitle">Explore trending travel spots from across India</p>
+        </div>
+
+        <div class="destinations-grid">
+          <div class="destination-card">
+            <div class="destination-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+            <div class="destination-content">
+              <h3 class="destination-name">Goa</h3>
+              <p class="destination-budget">₹8,000 - ₹15,000</p>
+              <div class="destination-rating">
+                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 16.74 19.64 25 12 19.52 4.36 25 6.45 16.74 0 10.26 8.91 10.26 12 2"/></svg>
+                <span>4.8</span>
+              </div>
+              <div class="destination-tags">
+                <span class="tag">Beach</span>
+                <span class="tag">Party</span>
+              </div>
+              <a href="discover.html" class="destination-btn">Explore</a>
+            </div>
+          </div>
+
+          <div class="destination-card">
+            <div class="destination-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+            <div class="destination-content">
+              <h3 class="destination-name">Manali</h3>
+              <p class="destination-budget">₹5,000 - ₹12,000</p>
+              <div class="destination-rating">
+                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 16.74 19.64 25 12 19.52 4.36 25 6.45 16.74 0 10.26 8.91 10.26 12 2"/></svg>
+                <span>4.9</span>
+              </div>
+              <div class="destination-tags">
+                <span class="tag">Mountain</span>
+                <span class="tag">Adventure</span>
+              </div>
+              <a href="discover.html" class="destination-btn">Explore</a>
+            </div>
+          </div>
+
+          <div class="destination-card">
+            <div class="destination-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+            <div class="destination-content">
+              <h3 class="destination-name">Kasol</h3>
+              <p class="destination-budget">₹4,000 - ₹10,000</p>
+              <div class="destination-rating">
+                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 16.74 19.64 25 12 19.52 4.36 25 6.45 16.74 0 10.26 8.91 10.26 12 2"/></svg>
+                <span>4.7</span>
+              </div>
+              <div class="destination-tags">
+                <span class="tag">Backpack</span>
+                <span class="tag">Budget</span>
+              </div>
+              <a href="discover.html" class="destination-btn">Explore</a>
+            </div>
+          </div>
+
+          <div class="destination-card">
+            <div class="destination-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+            <div class="destination-content">
+              <h3 class="destination-name">Udaipur</h3>
+              <p class="destination-budget">₹10,000 - ₹20,000</p>
+              <div class="destination-rating">
+                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 16.74 19.64 25 12 19.52 4.36 25 6.45 16.74 0 10.26 8.91 10.26 12 2"/></svg>
+                <span>4.9</span>
+              </div>
+              <div class="destination-tags">
+                <span class="tag">Heritage</span>
+                <span class="tag">Luxury</span>
+              </div>
+              <a href="discover.html" class="destination-btn">Explore</a>
+            </div>
+          </div>
+
+          <div class="destination-card">
+            <div class="destination-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"></div>
+            <div class="destination-content">
+              <h3 class="destination-name">Jaipur</h3>
+              <p class="destination-budget">₹7,000 - ₹15,000</p>
+              <div class="destination-rating">
+                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 16.74 19.64 25 12 19.52 4.36 25 6.45 16.74 0 10.26 8.91 10.26 12 2"/></svg>
+                <span>4.6</span>
+              </div>
+              <div class="destination-tags">
+                <span class="tag">Cultural</span>
+                <span class="tag">History</span>
+              </div>
+              <a href="discover.html" class="destination-btn">Explore</a>
+            </div>
+          </div>
+
+          <div class="destination-card">
+            <div class="destination-image" style="background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);"></div>
+            <div class="destination-content">
+              <h3 class="destination-name">Rishikesh</h3>
+              <p class="destination-budget">₹6,000 - ₹12,000</p>
+              <div class="destination-rating">
+                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 16.74 19.64 25 12 19.52 4.36 25 6.45 16.74 0 10.26 8.91 10.26 12 2"/></svg>
+                <span>4.8</span>
+              </div>
+              <div class="destination-tags">
+                <span class="tag">Spiritual</span>
+                <span class="tag">Adventure</span>
+              </div>
+              <a href="discover.html" class="destination-btn">Explore</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MAIN CONTENT GRID -->
+      <div class="grid grid-3 gap-6 animate-fade-in-up delay-3">
+
+        <div class="dashboard-left">
+          <div class="card card-featured mb-6">
+            <div class="card-header-modern">
+              <div>
+                <h3 class="card-title-modern">Upcoming Trip</h3>
+                <p class="card-subtitle">Your next adventure awaits</p>
+              </div>
+              <a href="trips.html" class="card-link">View all →</a>
+            </div>
+
+            <div class="trip-preview">
+              <div class="trip-preview-image"></div>
+              <div class="trip-preview-content">
+                <h4 class="trip-preview-title">Goa New Year Bash</h4>
+                <div class="trip-preview-dates">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M9 3v4M15 3v4"/>
+                  </svg>
+                  Dec 28, 2026 - Jan 2, 2027
                 </div>
-                <div style="display: flex; align-items: center; justify-content: space-between;">
-                  <div class="avatar-group">
-                    <div class="avatar avatar-sm" style="background: #DBEAFE; color: #2563EB;" title="You">A</div>
-                    <div class="avatar avatar-sm" style="background: #CCFBF1; color: #0D9488;">P</div>
-                    <div class="avatar avatar-sm" style="background: #FED7AA; color: #EA580C;">R</div>
+                <div class="trip-preview-members">
+                  <div class="avatar-group-inline">
+                    <div class="avatar avatar-xs">Y</div>
+                    <div class="avatar avatar-xs">P</div>
+                    <div class="avatar avatar-xs">R</div>
                   </div>
-                  <span class="badge badge-success">Confirmed</span>
+                  <span class="trip-preview-count">3 members confirmed</span>
+                </div>
+                <div class="trip-preview-meta">
+                  <div class="meta-item">
+                    <span class="meta-label">Budget</span>
+                    <span class="meta-value">₹15,000</span>
+                  </div>
+                  <div class="meta-item">
+                    <span class="meta-label">Status</span>
+                    <span class="badge badge-success">Confirmed</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="card">
-            <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 20px;">Quick Actions</h3>
-            <div class="quick-actions">
-              <a href="discover.html" class="quick-action">
-                <div class="quick-action-icon">🔍</div>
-                <div class="quick-action-label">Find Trips</div>
+          <div class="card card-quick-actions">
+            <h3 class="card-title-modern">Quick Actions</h3>
+            <div class="quick-actions-grid">
+              <a href="discover.html" class="quick-action-btn">
+                <div class="quick-action-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                  </svg>
+                </div>
+                <span>Explore Trips</span>
               </a>
-              <a href="trips.html#create" class="quick-action">
-                <div class="quick-action-icon">✈️</div>
-                <div class="quick-action-label">Post Trip</div>
+              <a href="trips.html" class="quick-action-btn">
+                <div class="quick-action-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 3h12a1 1 0 0 1 1 1v3H5V4a1 1 0 0 1 1-1z"/><rect x="4" y="7" width="16" height="12" rx="1"/><path d="M10 12v4M14 12v4"/>
+                  </svg>
+                </div>
+                <span>Post a Trip</span>
               </a>
-              <a href="profile.html" class="quick-action">
-                <div class="quick-action-icon">👤</div>
-                <div class="quick-action-label">Edit Profile</div>
+              <a href="profile.html" class="quick-action-btn">
+                <div class="quick-action-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </div>
+                <span>Edit Profile</span>
               </a>
-              <a href="matches.html" class="quick-action">
-                <div class="quick-action-icon">🤝</div>
-                <div class="quick-action-label">Matches</div>
+              <a href="matches.html" class="quick-action-btn">
+                <div class="quick-action-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </div>
+                <span>Find Matches</span>
               </a>
             </div>
           </div>
-
         </div>
 
-        <!-- Right Column (Narrower) -->
-        <div style="grid-column: span 1;" class="dashboard-right">
-          
-          <div class="card h-full">
-            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-              <h3 style="font-size: 16px; font-weight: 600;">Recent Activity</h3>
-            </div>
-
-            <div class="activity-feed">
-              <div class="activity-item">
-                <div class="activity-dot" style="background: var(--color-primary);"></div>
-                <div class="activity-content">
-                  <div class="activity-text"><strong>Priya Patel</strong> accepted your trip request for Ladakh.</div>
-                  <div class="activity-time">2 hours ago</div>
-                </div>
-              </div>
-              
-              <div class="activity-item">
-                <div class="activity-dot" style="background: var(--color-secondary);"></div>
-                <div class="activity-content">
-                  <div class="activity-text">You have a new <strong>92% match</strong> for your upcoming Goa trip.</div>
-                  <div class="activity-time">5 hours ago</div>
-                </div>
-              </div>
-
-              <div class="activity-item">
-                <div class="activity-dot" style="background: var(--color-warning);"></div>
-                <div class="activity-content">
-                  <div class="activity-text"><strong>Rahul Verma</strong> left you a 5-star review.</div>
-                  <div class="activity-time">Yesterday</div>
-                </div>
-              </div>
-
-              <div class="activity-item">
-                <div class="activity-dot" style="background: var(--color-border);"></div>
-                <div class="activity-content">
-                  <div class="activity-text">You successfully verified your college email.</div>
-                  <div class="activity-time">3 days ago</div>
-                </div>
+        <div class="dashboard-right">
+          <div class="card card-activity h-full">
+            <div class="card-header-modern">
+              <div>
+                <h3 class="card-title-modern">Recent Activity</h3>
+                <p class="card-subtitle">What's happening in your community</p>
               </div>
             </div>
-            
-            <a href="#" style="display: block; text-align: center; margin-top: 16px; font-size: 13px; color: var(--color-primary); font-weight: 500;">View all activity</a>
+
+            <div class="activity-timeline">
+              <div class="activity-item-premium">
+                <div class="activity-dot-premium" style="background: #2563EB;"></div>
+                <div class="activity-content-premium">
+                  <div class="activity-text-premium"><strong>Priya Patel</strong> accepted your Ladakh trip request</div>
+                  <div class="activity-meta">2 hours ago</div>
+                  <a href="#" class="activity-action">View trip →</a>
+                </div>
+              </div>
+
+              <div class="activity-item-premium">
+                <div class="activity-dot-premium" style="background: #06B6D4;"></div>
+                <div class="activity-content-premium">
+                  <div class="activity-text-premium">You have a <strong>92% match</strong> for your Goa trip</div>
+                  <div class="activity-meta">5 hours ago</div>
+                  <a href="matches.html" class="activity-action">View match →</a>
+                </div>
+              </div>
+
+              <div class="activity-item-premium">
+                <div class="activity-dot-premium" style="background: #F97316;"></div>
+                <div class="activity-content-premium">
+                  <div class="activity-text-premium"><strong>Rahul Verma</strong> left a 5-star review</div>
+                  <div class="activity-meta">Yesterday</div>
+                  <a href="reviews.html" class="activity-action">See review →</a>
+                </div>
+              </div>
+
+              <div class="activity-item-premium">
+                <div class="activity-dot-premium" style="background: #22C55E;"></div>
+                <div class="activity-content-premium">
+                  <div class="activity-text-premium">Successfully verified your college email</div>
+                  <div class="activity-meta">3 days ago</div>
+                </div>
+              </div>
+            </div>
+
+            <a href="#" style="display: block; margin-top: 20px; text-align: center; font-size: 13px; color: var(--color-primary); font-weight: 600;">See all activity →</a>
           </div>
-
         </div>
 
       </div>
+
     </div>
   </main>
 
   <script src="js/app.js"></script>
   <script src="js/dashboard.js"></script>
-  
-  <style>
-    @media (min-width: 1024px) {
-      .dashboard-left { grid-column: span 2 !important; }
-      .dashboard-right { grid-column: span 1 !important; }
+
+  <script>
+    function toggleUserMenu(e) {
+      e.stopPropagation();
+      const dropdown = e.target.closest('.sidebar-user').querySelector('.sidebar-user-dropdown');
+      dropdown.classList.toggle('active');
     }
-  </style>
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.sidebar-user-dropdown').forEach(d => d.classList.remove('active'));
+    });
+
+    document.querySelector('.notification-btn')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const dropdown = e.target.closest('.header-notification-icon').querySelector('.notification-dropdown');
+      dropdown.classList.toggle('active');
+    });
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.notification-dropdown').forEach(d => d.classList.remove('active'));
+    });
+  </script>
 </body>
 </html>
