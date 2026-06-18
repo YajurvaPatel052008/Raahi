@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🧭 Raahi — Travel Together. Trust First.
 
-## Getting Started
+Raahi is a **student-exclusive travel companion platform** that connects verified college students who share the same destination, budget, and travel style. Built with pure HTML, CSS, and JavaScript, powered by Supabase for authentication and real-time features.
 
-First, run the development server:
+## 🌐 Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+> Deployed at: **[https://raahi.vercel.app](https://raahi.vercel.app)**
+
+---
+
+## ✨ Features
+
+- 🛡️ **College Email Verification** — Only `@aitr.ac.in` and `@acropolis.in` emails allowed
+- 🤝 **Smart Matching** — Algorithm-based travel partner matching
+- 📊 **Trust Scores** — Community-driven reputation system
+- 💬 **Real-time Chat** — Supabase-powered live messaging
+- 🗺️ **Trip Planning** — Create, browse, and join trips
+- ⭐ **Reviews & Ratings** — Post-trip feedback system
+- 🆘 **Emergency SOS** — One-tap safety feature
+
+---
+
+## 🗂️ Project Structure
+
+```
+Raahi/
+├── index.html              # Landing page
+├── login.html              # Login
+├── register.html           # Registration
+├── verify-email.html       # Email verification
+├── onboarding.html         # New user onboarding
+├── dashboard.html          # User dashboard
+├── discover.html           # Discover trips
+├── trips.html              # My trips
+├── trip-detail.html        # Trip detail view
+├── matches.html            # Travel matches
+├── chat.html               # Real-time messaging
+├── profile.html            # User profile
+├── reviews.html            # Reviews
+├── settings.html           # Settings
+├── forgot-password.html    # Password reset
+├── auth-callback.html      # Supabase auth redirect handler
+├── css/                    # Stylesheets
+│   ├── variables.css       # Design tokens / CSS variables
+│   ├── reset.css           # CSS reset
+│   ├── typography.css      # Font styles
+│   ├── components.css      # Reusable UI components
+│   ├── layout.css          # Page layouts
+│   ├── animations.css      # Motion & transitions
+│   ├── utilities.css       # Utility classes
+│   ├── landing.css         # Landing page styles
+│   ├── auth.css            # Auth page styles
+│   ├── dashboard.css       # Dashboard styles
+│   ├── chat.css            # Chat styles
+│   └── onboarding.css      # Onboarding styles
+├── js/
+│   ├── supabase-client.js  # Supabase client + all API wrappers
+│   ├── app.js              # Global utilities (toasts, navbar, etc.)
+│   ├── auth.js             # Authentication handlers
+│   ├── dashboard.js        # Dashboard logic
+│   ├── discover.js         # Trip discovery
+│   ├── trips.js            # Trip management
+│   ├── chat.js             # Real-time chat
+│   ├── matches.js          # Matching logic
+│   ├── profile.js          # Profile management
+│   ├── onboarding.js       # Onboarding flow
+│   └── landing.js          # Landing page animations
+├── vercel.json             # Vercel deployment configuration
+└── .gitignore
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🚀 Deploying to Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This is a **pure static site** — no build step required.
 
-## Learn More
+### Step 1 — Push to GitHub
+```bash
+git add .
+git commit -m "deploy: ready for Vercel"
+git push origin main
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Step 2 — Import into Vercel
+1. Go to [vercel.com](https://vercel.com) → **Add New Project**
+2. Import the `Raahi` GitHub repository
+3. **Framework Preset**: Leave as `Other` (no framework)
+4. **Build Command**: *(leave empty)*
+5. **Output Directory**: *(leave empty / `.`)*
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Step 3 — Add Environment Variables
+In Vercel Project Settings → Environment Variables, add:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Variable | Value |
+|---|---|
+| *(none needed — credentials are hardcoded in `js/supabase-client.js`)* | |
 
-## Deploy on Vercel
+> **Note:** The Supabase anon key is a public key and safe to expose in client-side JS.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Step 4 — Deploy
+Click **Deploy**. Vercel will detect the static site and serve it instantly.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🔧 Supabase Setup
+
+After deployment, update these in your **Supabase Dashboard** (Authentication → URL Configuration):
+
+- **Site URL**: `https://your-project.vercel.app`
+- **Redirect URLs**: `https://your-project.vercel.app/auth-callback`
+
+---
+
+## 🛠️ Local Development
+
+No build tools needed. Simply open `index.html` in your browser, or use a local server:
+
+```bash
+# Using Python
+python -m http.server 3000
+
+# Using VS Code Live Server extension
+# Right-click index.html → Open with Live Server
+```
+
+---
+
+## 📄 License
+
+MIT © 2026 Raahi. Made with ❤️ for students.
