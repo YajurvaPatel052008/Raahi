@@ -111,33 +111,33 @@ window.closeCreateTripModal = function() {
 
 async function handleCreateTrip(e) {
   e.preventDefault();
-  const btn = document.getElementById('publishBtn');
-  if (btn) { btn.innerHTML = '<div class="spinner spinner-sm" style="border-top-color:white;display:inline-block;"></div>'; btn.disabled = true; }
 
+  const tripTitle = document.getElementById('tripTitle')?.value?.trim();
   const destination = document.getElementById('destination')?.value?.trim();
   const startDate = document.getElementById('startDate')?.value;
   const endDate = document.getElementById('endDate')?.value;
-  const budget = parseFloat(document.getElementById('budget')?.value);
-  const maxMembers = parseInt(document.getElementById('groupSize')?.value || '4');
+  const budget = document.getElementById('budget')?.value?.trim();
+  const groupSize = document.getElementById('groupSize')?.value;
   const travelType = document.getElementById('travelType')?.value;
-  const title = document.getElementById('tripTitle')?.value?.trim();
   const description = document.getElementById('description')?.value?.trim();
 
-  if (!destination || !startDate || !endDate || !budget || !title) {
+  if (!tripTitle || !destination || !startDate || !endDate || !budget) {
     if (window.showToast) window.showToast('Error', 'Please fill in all required fields', 'error');
-    if (btn) { btn.innerHTML = 'Publish Trip'; btn.disabled = false; }
     return;
   }
 
+  const btn = document.getElementById('publishBtn');
+  if (btn) { btn.innerHTML = '<div class="spinner spinner-sm" style="border-top-color:white;display:inline-block;"></div>'; btn.disabled = true; }
+
   const { data, error } = await window.raahi.createTrip({
     creator_id: currentUser.id,
+    title: tripTitle,
     destination,
     start_date: startDate,
     end_date: endDate,
-    budget,
-    max_members: maxMembers,
+    budget: parseFloat(budget),
+    max_members: parseInt(groupSize || '4'),
     travel_type: travelType,
-    title,
     description,
     status: 'open',
     current_members: 1
@@ -151,13 +151,7 @@ async function handleCreateTrip(e) {
   }
 
   window.closeCreateTripModal();
-  if (window.showToast) window.showToast('Trip Published!', `${title} is now live!`);
+  if (window.showToast) window.showToast('Trip Published!', `${tripTitle} is now live!`);
   e.target.reset();
   await loadTrips('my');
 }
-
-// Alias for old HTML onclick
-window.submitTrip = function() {
-  const form = document.getElementById('createTripForm');
-  if (form) form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
-};
