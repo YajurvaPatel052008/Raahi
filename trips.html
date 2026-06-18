@@ -173,35 +173,35 @@
           
           <div class="input-group">
             <label for="tripTitle" class="input-label">Trip Title <span class="required">*</span></label>
-            <input type="text" id="tripTitle" class="input" placeholder="e.g. Weekend getaway to Jaipur" required>
+            <input type="text" id="tripTitle" name="tripTitle" class="input" placeholder="e.g. Weekend getaway to Jaipur" required>
           </div>
 
           <div class="form-grid form-grid-2">
             <div class="input-group">
               <label for="destination" class="input-label">Destination <span class="required">*</span></label>
-              <input type="text" id="destination" class="input" placeholder="City or Place" required>
+              <input type="text" id="destination" name="destination" class="input" placeholder="City or Place" required>
             </div>
             <div class="input-group">
               <label for="budget" class="input-label">Estimated Budget (₹) <span class="required">*</span></label>
-              <input type="number" id="budget" class="input" placeholder="Per person" required>
+              <input type="number" id="budget" name="budget" class="input" placeholder="Per person" required>
             </div>
           </div>
 
           <div class="form-grid form-grid-2">
             <div class="input-group">
               <label for="startDate" class="input-label">Start Date <span class="required">*</span></label>
-              <input type="date" id="startDate" class="input" required>
+              <input type="date" id="startDate" name="startDate" class="input" required>
             </div>
             <div class="input-group">
               <label for="endDate" class="input-label">End Date <span class="required">*</span></label>
-              <input type="date" id="endDate" class="input" required>
+              <input type="date" id="endDate" name="endDate" class="input" required>
             </div>
           </div>
 
           <div class="form-grid form-grid-2">
             <div class="input-group">
               <label for="travelType" class="input-label">Travel Style</label>
-              <select id="travelType" class="input">
+              <select id="travelType" name="travelType" class="input">
                 <option value="adventure">🏔️ Adventure & Outdoors</option>
                 <option value="relax">🏖️ Beach & Relaxation</option>
                 <option value="culture">🏛️ Heritage & Culture</option>
@@ -210,7 +210,7 @@
             </div>
             <div class="input-group">
               <label for="groupSize" class="input-label">Max Group Size</label>
-              <select id="groupSize" class="input">
+              <select id="groupSize" name="groupSize" class="input">
                 <option value="2">2 people</option>
                 <option value="4" selected>4 people</option>
                 <option value="6">6 people</option>
@@ -221,7 +221,7 @@
 
           <div class="input-group">
             <label for="description" class="input-label">Description <span class="required">*</span></label>
-            <textarea id="description" class="input" placeholder="What's the plan? What kind of people are you looking for?" required></textarea>
+            <textarea id="description" name="description" class="input" placeholder="What's the plan? What kind of people are you looking for?" required></textarea>
           </div>
 
           <div class="modal-footer" style="padding: 0; border: none; margin-top: 16px;">

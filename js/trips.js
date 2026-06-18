@@ -95,63 +95,89 @@ function initTripTabs() {
 /* ── Create Trip Modal ── */
 function initCreateTripModal() {
   const form = document.getElementById('createTripForm');
-  if (!form) return;
+  if (!form) {
+    console.error('Form not found');
+    return;
+  }
   form.addEventListener('submit', handleCreateTrip);
 }
 
 window.openCreateTripModal = function() {
   const modal = document.getElementById('createTripModal');
-  if (modal) { modal.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  if (modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 };
 
 window.closeCreateTripModal = function() {
   const modal = document.getElementById('createTripModal');
-  if (modal) { modal.classList.remove('active'); document.body.style.overflow = ''; }
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
 };
 
 async function handleCreateTrip(e) {
   e.preventDefault();
 
-  const tripTitle = document.getElementById('tripTitle')?.value?.trim();
-  const destination = document.getElementById('destination')?.value?.trim();
-  const startDate = document.getElementById('startDate')?.value;
-  const endDate = document.getElementById('endDate')?.value;
-  const budget = document.getElementById('budget')?.value?.trim();
-  const groupSize = document.getElementById('groupSize')?.value;
-  const travelType = document.getElementById('travelType')?.value;
-  const description = document.getElementById('description')?.value?.trim();
+  const form = e.target;
+  const formData = new FormData(form);
+
+  const tripTitle = formData.get('tripTitle') || document.getElementById('tripTitle')?.value?.trim();
+  const destination = formData.get('destination') || document.getElementById('destination')?.value?.trim();
+  const startDate = formData.get('startDate') || document.getElementById('startDate')?.value;
+  const endDate = formData.get('endDate') || document.getElementById('endDate')?.value;
+  const budget = formData.get('budget') || document.getElementById('budget')?.value?.trim();
+  const groupSize = formData.get('groupSize') || document.getElementById('groupSize')?.value;
+  const travelType = formData.get('travelType') || document.getElementById('travelType')?.value;
+  const description = formData.get('description') || document.getElementById('description')?.value?.trim();
 
   if (!tripTitle || !destination || !startDate || !endDate || !budget) {
-    if (window.showToast) window.showToast('Error', 'Please fill in all required fields', 'error');
+    if (window.showToast) {
+      window.showToast('Error', 'Please fill in all required fields', 'error');
+    }
     return;
   }
 
   const btn = document.getElementById('publishBtn');
-  if (btn) { btn.innerHTML = '<div class="spinner spinner-sm" style="border-top-color:white;display:inline-block;"></div>'; btn.disabled = true; }
+  if (btn) {
+    btn.innerHTML = '<div class="spinner spinner-sm" style="border-top-color:white;display:inline-block;"></div>';
+    btn.disabled = true;
+  }
 
-  const { data, error } = await window.raahi.createTrip({
+  const tripData = {
     creator_id: currentUser.id,
     title: tripTitle,
-    destination,
+    destination: destination,
     start_date: startDate,
     end_date: endDate,
     budget: parseFloat(budget),
     max_members: parseInt(groupSize || '4'),
     travel_type: travelType,
-    description,
+    description: description,
     status: 'open',
     current_members: 1
-  });
+  };
 
-  if (btn) { btn.innerHTML = 'Publish Trip'; btn.disabled = false; }
+  const { data, error } = await window.raahi.createTrip(tripData);
+
+  if (btn) {
+    btn.innerHTML = 'Publish Trip';
+    btn.disabled = false;
+  }
 
   if (error) {
-    if (window.showToast) window.showToast('Error', error.message, 'error');
+    if (window.showToast) {
+      window.showToast('Error', error.message, 'error');
+    }
     return;
   }
 
   window.closeCreateTripModal();
-  if (window.showToast) window.showToast('Trip Published!', `${tripTitle} is now live!`);
-  e.target.reset();
+  if (window.showToast) {
+    window.showToast('Trip Published!', `${tripTitle} is now live!`);
+  }
+  form.reset();
   await loadTrips('my');
 }
