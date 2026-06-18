@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/utilities.css">
   <link rel="stylesheet" href="css/auth.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/supabase-client.js"></script>
 </head>
 <body>
 
@@ -31,21 +33,14 @@
         </div>
 
         <form class="auth-form" id="verifyForm" onsubmit="event.preventDefault(); simulateAuth('onboarding.html');">
-          <div class="otp-inputs" id="otpInputs">
-            <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required autofocus>
-            <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
-            <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
-            <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
-          </div>
-          <span class="input-error-msg justify-center mt-2" id="otpError" style="display: none;">Invalid code. Please try again.</span>
+          <p class="text-center" style="color: var(--color-text-muted); margin-bottom: 24px;">A verification link has been sent to your email. Please click the link to verify your account.</p>
 
-          <button type="submit" class="btn btn-primary btn-block btn-lg mt-6" id="submitBtn">Verify Email</button>
+          <button type="submit" class="btn btn-primary btn-block btn-lg mt-6" id="submitBtn">Continue to Onboarding</button>
         </form>
 
         <div class="resend-timer">
-          Didn't receive the code? <br>
-          <span id="timerText" class="mt-2 block">Resend in <strong id="countdown">00:30</strong></span>
-          <a id="resendLink" class="hidden mt-2 block" onclick="startTimer()">Resend Code</a>
+          Didn't receive the email? <br>
+          <a href="javascript:location.reload()" class="mt-2 block" style="color: var(--color-primary);">Try again</a>
         </div>
         
         <a href="login.html" style="display: inline-block; margin-top: 32px; font-size: 14px; color: var(--color-text-muted); font-weight: 500;">

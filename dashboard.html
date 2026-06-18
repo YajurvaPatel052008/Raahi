@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/utilities.css">
   <link rel="stylesheet" href="css/dashboard.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/supabase-client.js"></script>
 </head>
 <body>
 
@@ -76,10 +78,10 @@
 
     <div class="sidebar-footer">
       <div class="sidebar-user dropdown">
-        <div class="avatar avatar-sm avatar-status" style="background: #DBEAFE; color: #2563EB;">A</div>
+        <div class="avatar avatar-sm avatar-status" id="sidebarAvatar" style="background: #DBEAFE; color: #2563EB;">A</div>
         <div class="sidebar-user-info">
-          <div class="sidebar-user-name">Arjun Sharma</div>
-          <div class="sidebar-user-email">arjun@aitr.edu.in</div>
+          <div class="sidebar-user-name" id="sidebarUserName">Loading...</div>
+          <div class="sidebar-user-email" id="sidebarUserEmail"></div>
         </div>
         <div class="dropdown-trigger" style="color: var(--color-text-muted);">⋮</div>
         
@@ -87,7 +89,7 @@
           <a href="profile.html" class="dropdown-item">View Profile</a>
           <a href="settings.html" class="dropdown-item">Account Settings</a>
           <div class="dropdown-divider"></div>
-          <a href="login.html" class="dropdown-item" style="color: var(--color-error);">Log out</a>
+          <button onclick="window.raahi.signOut()" class="dropdown-item" style="color:var(--color-error);background:none;border:none;width:100%;text-align:left;cursor:pointer;padding:8px 16px;">Log out</button>
         </div>
       </div>
     </div>
@@ -99,7 +101,7 @@
   <header class="app-header">
     <div class="app-header-left">
       <div class="sidebar-toggle-btn">☰</div>
-      <div style="font-weight: 600;">Good morning, Arjun! 👋</div>
+      <div style="font-weight: 600;" id="welcomeGreeting">Welcome back! 👋</div>
     </div>
 
     <div class="app-header-right">

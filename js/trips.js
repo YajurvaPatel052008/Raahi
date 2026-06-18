@@ -1,81 +1,155 @@
 /* ============================================
-   RAAHI — Trips Logic
+   RAAHI — Trips Logic (Supabase Connected)
    ============================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+let currentUser = null;
+
+document.addEventListener('DOMContentLoaded', async () => {
+  currentUser = await window.raahi.requireAuth();
+  if (!currentUser) return;
+
+  await loadTrips('my');
   initTripTabs();
+  initCreateTripModal();
 });
 
-/* ── Trip Tabs ── */
+/* ── Load Trips ── */
+async function loadTrips(type = 'my') {
+  const grid = document.getElementById('tripsGrid');
+  if (!grid) return;
+
+  grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--color-text-muted);">
+    <div class="spinner"></div><p style="margin-top:16px;">Loading trips...</p>
+  </div>`;
+
+  let trips = [];
+
+  if (type === 'my') {
+    const { data } = await window.raahi.getMyTrips(currentUser.id);
+    trips = data || [];
+  } else if (type === 'joined') {
+    const { data } = await window.raahi.supabase
+      .from('trip_members')
+      .select('*, trip:trips(*)')
+      .eq('user_id', currentUser.id)
+      .eq('join_status', 'approved')
+      .neq('trips.creator_id', currentUser.id);
+    trips = (data || []).map(m => m.trip).filter(Boolean);
+  } else if (type === 'past') {
+    const { data } = await window.raahi.supabase
+      .from('trips')
+      .select('*')
+      .eq('creator_id', currentUser.id)
+      .eq('status', 'completed');
+    trips = data || [];
+  }
+
+  renderTripsGrid(grid, trips);
+}
+
+function renderTripsGrid(grid, trips) {
+  if (!trips || trips.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state" style="grid-column:1/-1;text-align:center;padding:64px;">
+        <div style="font-size:48px;margin-bottom:16px;">✈️</div>
+        <h3>No trips here yet</h3>
+        <p style="color:var(--color-text-muted);margin-bottom:20px;">Create your first trip and start finding travel buddies!</p>
+        <button class="btn btn-primary" onclick="openCreateTripModal()">+ Create a Trip</button>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = trips.map(trip => `
+    <div class="trip-card card" onclick="window.location='trip-detail.html?id=${trip.id}'">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span class="badge badge-${trip.status === 'open' ? 'success' : 'neutral'}">${trip.status}</span>
+        <span style="font-size:12px;color:var(--color-text-muted);">${trip.travel_type}</span>
+      </div>
+      <h3 style="font-weight:700;font-size:18px;margin-bottom:6px;">${trip.destination}</h3>
+      <p style="font-size:13px;color:var(--color-text-muted);margin-bottom:16px;">
+        📅 ${trip.start_date} → ${trip.end_date}<br>
+        💰 ₹${Number(trip.budget).toLocaleString('en-IN')} per person
+      </p>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:13px;">👥 ${trip.current_members}/${trip.max_members}</span>
+        <a href="trip-detail.html?id=${trip.id}" class="btn btn-outline btn-sm">View Details</a>
+      </div>
+    </div>`).join('');
+}
+
+/* ── Tab Switching ── */
 function initTripTabs() {
   const tabs = document.querySelectorAll('#tripTabs .tab');
-  const grid = document.getElementById('tripsGrid');
-  
-  if (!tabs.length || !grid) return;
+  if (!tabs.length) return;
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      // Update active state
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-
-      // Simulate loading/filtering
-      grid.style.opacity = '0';
-      grid.style.transform = 'translateY(10px)';
-      
-      setTimeout(() => {
-        const target = tab.getAttribute('data-target');
-        
-        if (target === 'past') {
-          grid.innerHTML = `
-            <div class="empty-state" style="grid-column: 1 / -1;">
-              <div class="empty-state-icon">✈️</div>
-              <h3>No past trips yet</h3>
-              <p>When you complete a trip, it will appear here.</p>
-              <a href="discover.html" class="btn btn-primary">Find a Trip</a>
-            </div>
-          `;
-        } else {
-          // Just reload the page to get the original HTML back for demo
-          location.reload();
-        }
-        
-        grid.style.opacity = '1';
-        grid.style.transform = 'translateY(0)';
-      }, 300);
+      const target = tab.getAttribute('data-target') || 'my';
+      loadTrips(target);
     });
   });
 }
 
 /* ── Create Trip Modal ── */
+function initCreateTripModal() {
+  const form = document.getElementById('createTripForm');
+  if (!form) return;
+  form.addEventListener('submit', handleCreateTrip);
+}
+
 window.openCreateTripModal = function() {
   const modal = document.getElementById('createTripModal');
-  if (modal) {
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+  if (modal) { modal.classList.add('active'); document.body.style.overflow = 'hidden'; }
 };
 
-window.submitTrip = function() {
-  const btn = document.getElementById('publishBtn');
-  const originalText = btn.textContent;
-  
-  btn.innerHTML = '<div class="spinner spinner-sm" style="border-top-color: white;"></div>';
-  btn.disabled = true;
+window.closeCreateTripModal = function() {
+  const modal = document.getElementById('createTripModal');
+  if (modal) { modal.classList.remove('active'); document.body.style.overflow = ''; }
+};
 
-  setTimeout(() => {
-    const modal = document.getElementById('createTripModal');
-    if (modal) {
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    
-    if (window.showToast) {
-      window.showToast('Trip Published!', 'Your trip is now live and visible to matches.');
-    }
-    
-    btn.innerHTML = originalText;
-    btn.disabled = false;
-    document.getElementById('createTripForm').reset();
-  }, 1500);
+async function handleCreateTrip(e) {
+  e.preventDefault();
+  const btn = document.getElementById('publishBtn');
+  if (btn) { btn.innerHTML = '<div class="spinner spinner-sm" style="border-top-color:white;display:inline-block;"></div>'; btn.disabled = true; }
+
+  const destination = document.getElementById('tripDestination')?.value?.trim();
+  const startDate = document.getElementById('tripStartDate')?.value;
+  const endDate = document.getElementById('tripEndDate')?.value;
+  const budget = parseFloat(document.getElementById('tripBudget')?.value);
+  const maxMembers = parseInt(document.getElementById('tripMaxMembers')?.value || '4');
+  const travelType = document.getElementById('tripType')?.value;
+  const description = document.getElementById('tripDescription')?.value?.trim();
+
+  const { data, error } = await window.raahi.createTrip({
+    creator_id: currentUser.id,
+    destination,
+    start_date: startDate,
+    end_date: endDate,
+    budget,
+    max_members: maxMembers,
+    travel_type: travelType,
+    description,
+    status: 'open',
+    current_members: 1
+  });
+
+  if (btn) { btn.innerHTML = 'Publish Trip'; btn.disabled = false; }
+
+  if (error) {
+    if (window.showToast) window.showToast('Error', error.message, 'error');
+    return;
+  }
+
+  window.closeCreateTripModal();
+  if (window.showToast) window.showToast('Trip Published!', `${destination} is now live!`);
+  e.target.reset();
+  await loadTrips('my');
+}
+
+// Alias for old HTML onclick
+window.submitTrip = function() {
+  const form = document.getElementById('createTripForm');
+  if (form) form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
 };

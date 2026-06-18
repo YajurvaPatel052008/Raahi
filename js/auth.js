@@ -1,21 +1,174 @@
 /* ============================================
-   RAAHI — Authentication JavaScript
+   RAAHI — Authentication JavaScript (Supabase)
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
   initPasswordToggle();
-  initOTPInputs();
-  if (document.getElementById('countdown')) {
-    startTimer();
-  }
+  initAuthForms();
 });
 
-/* ── Password Visibility Toggle ── */
+/* ── Init all auth form listeners ── */
+function initAuthForms() {
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const forgotForm = document.getElementById('forgotForm');
+
+  if (loginForm) {
+    // Remove old onsubmit
+    loginForm.removeAttribute('onsubmit');
+    loginForm.addEventListener('submit', handleLogin);
+  }
+
+  if (registerForm) {
+    registerForm.removeAttribute('onsubmit');
+    registerForm.addEventListener('submit', handleRegister);
+  }
+
+  if (forgotForm) {
+    forgotForm.removeAttribute('onsubmit');
+    forgotForm.addEventListener('submit', handleForgotPassword);
+  }
+}
+
+/* ── Show/Hide error on page ── */
+function showFormError(message) {
+  let el = document.getElementById('authError');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'authError';
+    el.style.cssText = 'background:#fee2e2;color:#b91c1c;padding:12px 16px;border-radius:8px;font-size:14px;margin-bottom:16px;border:1px solid #fca5a5;';
+    const form = document.querySelector('.auth-form');
+    if (form) form.prepend(el);
+  }
+  el.textContent = '⚠️ ' + message;
+  el.style.display = 'block';
+}
+
+function hideFormError() {
+  const el = document.getElementById('authError');
+  if (el) el.style.display = 'none';
+}
+
+function setButtonLoading(loading) {
+  const btn = document.getElementById('submitBtn');
+  if (!btn) return;
+  if (loading) {
+    btn._originalText = btn.innerHTML;
+    btn.innerHTML = '<div class="spinner spinner-sm" style="border-top-color: white; display:inline-block;"></div>';
+    btn.disabled = true;
+  } else {
+    btn.innerHTML = btn._originalText || btn.innerHTML;
+    btn.disabled = false;
+  }
+}
+
+/* ══════════════════════════════════════════
+   LOGIN
+══════════════════════════════════════════ */
+async function handleLogin(e) {
+  e.preventDefault();
+  hideFormError();
+  setButtonLoading(true);
+
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+
+  const { data, error } = await window.raahi.signIn({ email, password });
+
+  if (error) {
+    setButtonLoading(false);
+    showFormError(error.message === 'Invalid login credentials'
+      ? 'Incorrect email or password. Please try again.'
+      : error.message);
+    return;
+  }
+
+  // Successful login — redirect to dashboard
+  window.location.href = 'dashboard.html';
+}
+
+/* ══════════════════════════════════════════
+   REGISTER
+══════════════════════════════════════════ */
+async function handleRegister(e) {
+  e.preventDefault();
+  hideFormError();
+
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName = document.getElementById('lastName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const college = document.getElementById('college').value;
+  const year = document.getElementById('year').value;
+  const password = document.getElementById('password').value;
+
+  // Domain validation
+  if (!window.raahi.isAllowedDomain(email)) {
+    showFormError('Only @aitr.ac.in and @acropolis.in emails are allowed to register.');
+    return;
+  }
+
+  if (password.length < 8) {
+    showFormError('Password must be at least 8 characters long.');
+    return;
+  }
+
+  setButtonLoading(true);
+
+  const { data, error } = await window.raahi.signUp({
+    email,
+    password,
+    fullName: `${firstName} ${lastName}`,
+    college,
+    year
+  });
+
+  if (error) {
+    setButtonLoading(false);
+    showFormError(error.message);
+    return;
+  }
+
+  // Redirect to verify page
+  window.location.href = 'verify-email.html';
+}
+
+/* ══════════════════════════════════════════
+   FORGOT PASSWORD
+══════════════════════════════════════════ */
+async function handleForgotPassword(e) {
+  e.preventDefault();
+  hideFormError();
+
+  const email = document.getElementById('email').value.trim();
+  setButtonLoading(true);
+
+  const { error } = await window.raahi.resetPassword(email);
+
+  setButtonLoading(false);
+
+  if (error) {
+    showFormError(error.message);
+    return;
+  }
+
+  // Show success state
+  const form = document.getElementById('forgotForm');
+  const successDiv = document.getElementById('resetSuccess');
+  const emailText = document.getElementById('resetEmailText');
+
+  if (form) form.style.display = 'none';
+  if (emailText) emailText.textContent = email;
+  if (successDiv) successDiv.classList.remove('hidden');
+}
+
+/* ══════════════════════════════════════════
+   UI HELPERS (unchanged)
+══════════════════════════════════════════ */
+
 function initPasswordToggle() {
   window.togglePasswordVisibility = function(inputId) {
     const input = document.getElementById(inputId);
     const icon = input.nextElementSibling;
-    
     if (input.type === 'password') {
       input.type = 'text';
       icon.textContent = '🙈';
@@ -26,7 +179,6 @@ function initPasswordToggle() {
   };
 }
 
-/* ── Password Strength Indicator ── */
 window.updatePasswordStrength = function(password) {
   const bars = [
     document.getElementById('strengthBar1'),
@@ -34,10 +186,8 @@ window.updatePasswordStrength = function(password) {
     document.getElementById('strengthBar3')
   ];
   const text = document.getElementById('strengthText');
-  
-  if (!bars[0] || !text) return;
 
-  // Reset classes
+  if (!bars[0] || !text) return;
   bars.forEach(bar => bar.className = 'password-strength-bar');
 
   if (!password) {
@@ -64,138 +214,8 @@ window.updatePasswordStrength = function(password) {
     bars[0].classList.add('strong');
     bars[1].classList.add('strong');
     bars[2].classList.add('strong');
-    text.textContent = 'Strong password';
+    text.textContent = 'Strong password ✓';
     text.style.color = 'var(--color-success)';
   }
 };
 
-/* ── OTP Inputs Logic ── */
-function initOTPInputs() {
-  const inputs = document.querySelectorAll('.otp-input');
-  if (!inputs.length) return;
-
-  inputs.forEach((input, index) => {
-    // Handle input
-    input.addEventListener('input', (e) => {
-      // Allow only numbers
-      input.value = input.value.replace(/[^0-9]/g, '');
-      
-      if (input.value && index < inputs.length - 1) {
-        inputs[index + 1].focus();
-      }
-    });
-
-    // Handle backspace
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Backspace' && !input.value && index > 0) {
-        inputs[index - 1].focus();
-      }
-    });
-
-    // Handle paste
-    input.addEventListener('paste', (e) => {
-      e.preventDefault();
-      const pastedData = e.clipboardData.getData('text').replace(/[^0-9]/g, '').slice(0, 4);
-      
-      if (pastedData) {
-        pastedData.split('').forEach((char, i) => {
-          if (inputs[i]) {
-            inputs[i].value = char;
-            if (i < inputs.length - 1) inputs[i + 1].focus();
-          }
-        });
-      }
-    });
-  });
-}
-
-/* ── OTP Resend Timer ── */
-window.startTimer = function() {
-  const timerText = document.getElementById('timerText');
-  const resendLink = document.getElementById('resendLink');
-  const countdownEl = document.getElementById('countdown');
-  
-  if (!timerText || !resendLink || !countdownEl) return;
-
-  timerText.classList.remove('hidden');
-  resendLink.classList.add('hidden');
-  
-  let timeLeft = 30;
-  
-  const timer = setInterval(() => {
-    timeLeft--;
-    const seconds = timeLeft < 10 ? `0${timeLeft}` : timeLeft;
-    countdownEl.textContent = `00:${seconds}`;
-    
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-      timerText.classList.add('hidden');
-      resendLink.classList.remove('hidden');
-      if (window.showToast) {
-        window.showToast('Code expired', 'You can now request a new code.', 'info');
-      }
-    }
-  }, 1000);
-};
-
-/* ── Simulate Auth Flow ── */
-window.simulateAuth = function(redirectUrl) {
-  const btn = document.getElementById('submitBtn');
-  const originalText = btn.textContent;
-  
-  // Quick validation check
-  const form = btn.closest('form');
-  if (form && typeof validateForm === 'function' && !validateForm(form)) {
-    return;
-  }
-
-  // Check OTP specifically
-  if (form && form.id === 'verifyForm') {
-    const inputs = form.querySelectorAll('.otp-input');
-    const isComplete = Array.from(inputs).every(input => input.value.length === 1);
-    
-    if (!isComplete) {
-      const errorMsg = document.getElementById('otpError');
-      if (errorMsg) errorMsg.style.display = 'flex';
-      return;
-    }
-  }
-
-  // Simulate loading state
-  btn.innerHTML = '<div class="spinner spinner-sm" style="border-top-color: white;"></div>';
-  btn.disabled = true;
-
-  // Fake network request
-  setTimeout(() => {
-    window.location.href = redirectUrl;
-  }, 1500);
-};
-
-/* ── Simulate Password Reset ── */
-window.simulatePasswordReset = function() {
-  const form = document.getElementById('forgotForm');
-  const emailInput = document.getElementById('email');
-  const successDiv = document.getElementById('resetSuccess');
-  const emailText = document.getElementById('resetEmailText');
-  const btn = document.getElementById('submitBtn');
-  
-  if (typeof validateForm === 'function' && !validateForm(form)) {
-    return;
-  }
-
-  const email = emailInput.value;
-  
-  btn.innerHTML = '<div class="spinner spinner-sm" style="border-top-color: white;"></div>';
-  btn.disabled = true;
-
-  setTimeout(() => {
-    form.style.display = 'none';
-    emailText.textContent = email;
-    successDiv.classList.remove('hidden');
-    
-    // Add success toast
-    if (window.showToast) {
-      window.showToast('Email sent', 'Please check your inbox for the reset link.');
-    }
-  }, 1500);
-};
